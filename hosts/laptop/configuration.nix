@@ -14,6 +14,7 @@
       ../../modules/system/polkit.nix
       ../../modules/system/notifications.nix
       ../../modules/system/launcher.nix
+      ../../modules/system/mangorc.nix
       # ../../modules/system/boot-manager.nix
     ];
 

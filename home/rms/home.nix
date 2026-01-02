@@ -28,6 +28,7 @@
 		python3
 		rclone
 		zathura
+		noctilia
 	];
 
 	programs.home-manager.enable = true;

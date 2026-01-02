@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-	home.rms = "rms";
+	home.username = "rms";
 	home.homeDirectory = "/home/rms";
 
 	home.stateVersion = "25.11";
@@ -27,6 +27,7 @@
 		vscode
 		python3
 		rclone
+		zathura
 	];
 
 	programs.home-manager.enable = true;

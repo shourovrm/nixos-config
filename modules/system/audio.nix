@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
-	sound.enable = true;
+	#  sound.enable = true;
 
-	sercies.pipewire = {
+	services.pipewire = {
 		enable = true;
 		pulse.enable = true;
 		alsa.enable = true;
-		alsa.support32bit = true;
+		alsa.support32Bit = true;
 		wireplumber.enable = true;
 	};
 }

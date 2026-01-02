@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
-	boot.supportedFilesystems = [ "ntfs" ]
-	services.udisk2.enable = true;
+	boot.supportedFilesystems = [ "ntfs" ];
+	services.udisks2.enable = true;
 	services.gvfs.enable = true;
 
 	environment.systemPackages = with pkgs; [
 		thunar
 		thunar-volman
-		ntfs-3g
+		ntfs3g
 	];
 }

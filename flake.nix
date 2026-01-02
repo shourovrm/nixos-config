@@ -10,7 +10,7 @@
 		};
 	};
 
-	outputs = { self, nixpkgs, home-manager };
+	outputs = { self, nixpkgs, home-manager }:
 
 	let 
 		system = "x86_64-linux";
@@ -21,11 +21,11 @@
 				./hosts/laptop/configuration.nix
 				home-manager.nixosModules.home-manager
 				{
-					home-manager.userGlobalPkgs = true;
+					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = true;
 					home-manager.users.rms = 
 						import ./home/rms/home.nix;
-				};
+				}
 			];
 		};
 	};

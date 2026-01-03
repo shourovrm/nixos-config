@@ -8,24 +8,38 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
+		mango = {
+			url = "github:DreamMaoMao/mango";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
-	outputs = { self, nixpkgs, home-manager }:
+	outputs = { self, nixpkgs, home-manager, mango, ... }@inputs:
 
-	let 
-		system = "x86_64-linux";
-	in {
+	{
 		nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+			system = "x86_64-linux";
 			inherit system;
+
 			modules = [
 				./hosts/laptop/configuration.nix
+				
+				# Mango system module
+				./modules/system/mango.nix
+
 				home-manager.nixosModules.home-manager
 				{
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = true;
-					home-manager.users.rms = 
-						import ./home/rms/home.nix;
+					home-manager.users.rms = {
+						import = [
+							./home/rms/home.nix
+							./home/rms/mango.nix
+						];
+					};	
 				}
+				
 			];
 		};
 	};

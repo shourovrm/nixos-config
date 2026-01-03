@@ -9,12 +9,12 @@
       ../../modules/system/networking.nix
       ../../modules/system/power.nix
       ../../modules/system/filesystems.nix
-      ../../modules/system/graphics.nix
-      ../../modules/system/seatd.nix
-      ../../modules/system/polkit.nix
-      ../../modules/system/notifications.nix
-      ../../modules/system/launcher.nix
-      ../../modules/system/mangorc.nix
+    #  ../../modules/system/graphics.nix
+    #  ../../modules/system/seatd.nix
+     # ../../modules/system/polkit.nix
+     # ../../modules/system/notifications.nix
+     # ../../modules/system/launcher.nix
+      ../../modules/system/mango.nix
       # ../../modules/system/boot-manager.nix
     ];
 

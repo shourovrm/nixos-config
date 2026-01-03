@@ -10,8 +10,8 @@
 	## for TTY session of mangorc
 	home.sessionVariables = {
 		XDG_SESSION_TYPE = "wayland";
-		XDG_CURRENT_DESKTOP = "mangorc";
-		XDG_SESSION_DESKTOP = "mangorc";
+		XDG_CURRENT_DESKTOP = "mango";
+		XDG_SESSION_DESKTOP = "mango";
 
 		MOZ_ENABLE_WAYLANG = "1";
 		QT_QPA_PLATFORM = "wayland";
@@ -41,7 +41,7 @@
 		python3
 		rclone
 		zathura
-		noctilia
+  #		noctilia
 	];
 
 	programs.home-manager.enable = true;

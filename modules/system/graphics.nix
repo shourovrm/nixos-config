@@ -2,8 +2,6 @@
 {
 	# VirtualBox Guest Additions with auto-resize support
 	virtualisation.virtualbox.guest.enable = true;
-	virtualisation.virtualbox.guest.draggable = true;
-	virtualisation.virtualbox.guest.clipboard = true;
 
 	# Enable OpenGL and graphics rendering
 	hardware.graphics = {

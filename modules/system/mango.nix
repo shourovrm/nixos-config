@@ -34,5 +34,10 @@
 		wayland-utils
 		xwayland
 		mesa-demos
+		foot
+    	wmenu
+    	grim
+    	slurp
+    	swaybg
 	];
 }

@@ -4,7 +4,7 @@
 		enable = true;
 
 		# Read config from the system mango-config file
-		settings = builtins.readFile ../../modules/system/mango-config/config.conf;
+		settings = builtins.readFile ../../mango-config/config.conf;
 
 		autostart_sh = ''
 			mako &

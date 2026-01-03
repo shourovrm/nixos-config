@@ -12,9 +12,6 @@
 
 	programs.xwayland.enable = true;
 
-	# VirtualBox Guest Additions for 3D acceleration
-	virtualisation.virtualbox.guest.enable = true;
-
 	# OpenGL and graphics support
 	hardware.graphics = {
 		enable = true;
@@ -37,6 +34,5 @@
 		wayland-utils
 		xwayland
 		mesa-demos
-		glxinfo
 	];
 }

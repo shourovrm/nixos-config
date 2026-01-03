@@ -8,10 +8,10 @@
 		brightnessctl
 	];
 
-	# services.logind.settings.logind.HandleLidSwitch = "suspend";
-	# services.logind.settings.Logind.HandleLidSwitchDocked = "ignore";
-	services.logind = {
-		lidSwitch = "suspend";
-		lidSwitchDocked = "ignore";
+	services.logind.settings = {
+		Login = {
+			HandleLidSwitch = "suspend";
+			HandleLidSwitchDocked = "ignore";
+		};
 	};
 }

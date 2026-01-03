@@ -20,12 +20,12 @@
 	{
 		nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
 			system = "x86_64-linux";
-			inherit system;
 
 			modules = [
 				./hosts/laptop/configuration.nix
 				
 				# Mango system module
+				mango.nixosModules.mango
 				./modules/system/mango.nix
 
 				home-manager.nixosModules.home-manager
@@ -33,7 +33,8 @@
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = true;
 					home-manager.users.rms = {
-						import = [
+						imports = [
+							mango.hmModules.mango
 							./home/rms/home.nix
 							./home/rms/mango.nix
 						];

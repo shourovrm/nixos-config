@@ -1,15 +1,10 @@
-{ inputs, ... }:
+{ ... }:
 {
-	imports = [
-		inputs.mango.hmModules.mango
-	];
 
 	wayland.windowManager.mango = {
 		enable = true;
 
 		settings = ''
-			mod = SUPER
-			terminal = kitty
 		'';
 
 		autostart_sh = ''

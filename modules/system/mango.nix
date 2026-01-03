@@ -1,15 +1,14 @@
-{ inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 {
-	# import the official mango NixOS module 
-	imports = [
-		inputs.mango.nixosModules.mango
-	];
 
 	programs.mango.enable = true;
 
 	services.seatd.enable = true;
 
+	
+	users.groups.seat = {};
 	users.groups.video = {};
+	users.users.rms.extraGroups = [ "seat" "video" ];
 
 	programs.xwayland.enable = true;
 

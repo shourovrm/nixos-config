@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 {
-	# VirtualBox Guest Additions
+	# VirtualBox Guest Additions with auto-resize support
 	virtualisation.virtualbox.guest.enable = true;
+	virtualisation.virtualbox.guest.draggable = true;
+	virtualisation.virtualbox.guest.clipboard = true;
 
 	# Enable OpenGL and graphics rendering
 	hardware.graphics = {
@@ -24,8 +26,24 @@
 		LIBGL_DRIVERS_PATH = "${pkgs.mesa}/lib/dri";
 	};
 
+	# VirtualBox Guest Additions services for auto-resize
+	systemd.services.vboxclient-video = {
+		description = "VirtualBox Guest Additions - Video autosize";
+		wantedBy = [ "graphical-session.target" ];
+		partOf = [ "graphical-session.target" ];
+		after = [ "graphical-session-pre.target" ];
+		serviceConfig = {
+			Type = "simple";
+			ExecStart = "${pkgs.virtualboxGuest}/bin/VBoxClient -displayvideoresize";
+			Restart = "always";
+			RestartSec = 5;
+		};
+	};
+
 	environment.systemPackages = with pkgs; [
 		mesa-demos
 		vulkan-tools
+		virtualboxGuest
 	];
 }
+

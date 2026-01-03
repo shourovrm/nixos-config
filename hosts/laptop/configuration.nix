@@ -16,7 +16,7 @@
      # ../../modules/system/launcher.nix
       ../../modules/system/mango.nix
       # ../../modules/system/boot-manager.nix
-      ../../modules/system/x11-temp.nix
+     # ../../modules/system/x11-temp.nix
     ];
 
   # systemd instead of grub

@@ -28,20 +28,19 @@
 				mango.nixosModules.mango
 				./modules/system/mango.nix
 
-				home-manager.nixosModules.home-manager
-				{
-					home-manager.useGlobalPkgs = true;
-					home-manager.useUserPackages = true;
-					home-manager.users.rms = {
-						imports = [
-							mango.hmModules.mango
-							./home/rms/home.nix
-							./home/rms/mango.nix
-						];
-					};	
-				}
-				
-			];
+			home-manager.nixosModules.home-manager
+			{
+				home-manager.useGlobalPkgs = true;
+				home-manager.useUserPackages = true;
+				home-manager.backupFileExtension = "backup";
+				home-manager.users.rms = {
+					imports = [
+						mango.hmModules.mango
+						./home/rms/home.nix
+						./home/rms/mango.nix
+					];
+				};	
+			}			];
 		};
 	};
 }

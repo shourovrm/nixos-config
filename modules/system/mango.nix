@@ -12,10 +12,23 @@
 
 	programs.xwayland.enable = true;
 
+	# VirtualBox Guest Additions for 3D acceleration
+	virtualisation.virtualbox.guest.enable = true;
+
+	# OpenGL and graphics support
 	hardware.graphics = {
 		enable = true;
+		enable32Bit = true;
 		extraPackages = with pkgs; [
 			mesa
+			libva
+			libvdpau
+			vulkan-loader
+			vulkan-tools
+		];
+		extraPackages32 = with pkgs.pkgsi686Linux; [
+			mesa
+			libva
 		];
 	};
 
@@ -23,5 +36,7 @@
 		wl-clipboard
 		wayland-utils
 		xwayland
+		mesa-demos
+		glxinfo
 	];
 }

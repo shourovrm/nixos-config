@@ -1,10 +1,32 @@
 { config, pkgs, ... }:
 {
-	hardware.graphics.enable = true;
+	# VirtualBox Guest Additions
+	virtualisation.virtualbox.guest.enable = true;
 
- 	hardware.graphics.extraPackages = with pkgs; [
- 		mesa
- 	];
+	# Enable OpenGL and graphics rendering
+	hardware.graphics = {
+		enable = true;
+		enable32Bit = true;
+		extraPackages = with pkgs; [
+			mesa
+			libva
+			libvdpau
+			vulkan-loader
+		];
+		extraPackages32 = with pkgs.pkgsi686Linux; [
+			mesa
+			libva
+		];
+	};
 
-#	programs.xwayland.enable = true;
+	# DRI and rendering
+	environment.variables = {
+		LIBGL_DRIVERS_PATH = "${pkgs.mesa}/lib/dri";
+	};
+
+	environment.systemPackages = with pkgs; [
+		mesa-demos
+		glxinfo
+		vulkan-tools
+	];
 }

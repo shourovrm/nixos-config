@@ -1,6 +1,6 @@
 # home/rms/home.nix
 # User-level configuration managed by Home Manager.
-{ config, pkgs, ... }:
+{ config, pkgs, opencode, ... }:
 
 {
   # ── Identity ──────────────────────────────────────────────────────────────
@@ -13,6 +13,7 @@
   # ── User packages ─────────────────────────────────────────────────────────
   # Everything the user needs but that doesn't require system-level access.
   home.packages = with pkgs; [
+    opencode
     firefox
     # vscode
     (vscode.override { commandLineArgs = "--ozone-platform=wayland"; })  # optional, good for GNOME Wayland
@@ -22,10 +23,16 @@
     fd
     bat          # better cat
     eza          # better ls
+    mpv
 
     # Office & document viewers
     libreoffice  # full office suite
     evince       # GNOME document/PDF viewer (integrates with GNOME)
+
+    # nodejs (npm + npx)
+    nodejs
+
+    #opencode
   ];
 
   # ── Git ───────────────────────────────────────────────────────────────────

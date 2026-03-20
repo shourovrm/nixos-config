@@ -58,7 +58,44 @@
   # ── Printing ──────────────────────────────────────────────────────────────
   services.printing.enable = true;
 
-  
+  # ── NTFS / Windows partitions ─────────────────────────────────────────────
+  # Uses the modern in-kernel ntfs3 driver (read-write, faster than ntfs-3g).
+  # IMPORTANT: before mounting read-write you MUST disable Windows Fast Startup:
+  #   Windows → Settings → Power & Sleep → Additional power settings
+  #   → "Choose what the power buttons do" → turn OFF "Turn on fast startup".
+  # Also run a full shutdown (not restart) from Windows at least once.
+  #
+  # uid/gid 1000 = user rms.  Change if your UID differs (run `id` to check).
+
+  fileSystems."/mnt/windows" = {
+    device  = "/dev/disk/by-uuid/D42883A6288385E8";  # nvme0n1p3 — Windows C:
+    fsType  = "ntfs3";
+    options = [
+      "rw"                  # read-write
+      "uid=1000"
+      "gid=1000"
+      "dmask=022"           # directories: rwxr-xr-x
+      "fmask=133"           # files:       rw-r--r--
+      "x-gvfs-show"         # show in GNOME Files sidebar
+      "nofail"              # don't block boot if Windows left it dirty
+      "noatime"             # skip access-time writes (better SSD health)
+    ];
+  };
+
+  fileSystems."/mnt/data" = {
+    device  = "/dev/disk/by-uuid/D4F461C0F461A608";  # nvme0n1p5 — New Volume (493 GB)
+    fsType  = "ntfs3";
+    options = [
+      "rw"
+      "uid=1000"
+      "gid=1000"
+      "dmask=022"
+      "fmask=133"
+      "x-gvfs-show"
+      "nofail"
+      "noatime"
+    ];
+  };
 
   # ── User account ──────────────────────────────────────────────────────────
   users.users.rms = {

@@ -37,10 +37,31 @@
         "type": "github"
       }
     },
+    "opencode-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771442093,
+        "narHash": "sha256-DWRdWWS1luEuWgd0pYydmp97MdvfVGdsI8gnWfygNFg=",
+        "owner": "aodhanhayter",
+        "repo": "opencode-flake",
+        "rev": "049b5b433ac88f05453d23a67a6d7ac8f62ea0b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aodhanhayter",
+        "repo": "opencode-flake",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "opencode-flake": "opencode-flake"
       }
     }
   },

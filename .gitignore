@@ -1,0 +1,17 @@
+# Nix build results
+result
+result-*
+
+# Editor / IDE artefacts
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Secrets — never commit plain-text secrets
+*.age
+*.pem
+secrets.yaml

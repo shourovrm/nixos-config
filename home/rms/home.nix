@@ -5,6 +5,7 @@
 {
   imports = [
     ./modules/packages.nix
+    ./modules/vscode.nix
     ./modules/git.nix
     ./modules/bash.nix
     ./modules/neovim.nix

@@ -5,7 +5,6 @@
   home.packages = with pkgs; [
     opencode
     firefox
-    (vscode.override { commandLineArgs = "--ozone-platform=wayland --password-store=gnome-libsecret"; })
     btop
     ripgrep
     fd
@@ -17,5 +16,9 @@
     evince
     nodejs
     uv              # Python package / environment manager
+
+    # ── LaTeX (offline, auto-installs missing packages on compile) ────────
+    miktex          # MiKTeX TeX distribution with on-the-fly package install
+    perl            # latexmk is a Perl script; required by MiKTeX's latexmk
   ];
 }

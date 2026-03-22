@@ -30,7 +30,10 @@
 `git` `wget` `curl` `zathura`
 
 ### User packages (Home Manager — `packages.nix`)
-`opencode` `firefox` `vscode` (Wayland + gnome-libsecret flags) `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv`
+`opencode` `firefox` `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv` `miktex` `perl`
+
+### VSCode (Home Manager — `vscode.nix`)
+Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
 
 ### Niri session tools (in `home/rms/modules/niri.nix`)
 `fuzzel` `foot` `swaylock` `swaybg` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl`
@@ -39,9 +42,10 @@
 | Module | Purpose |
 | --- | --- |
 | `packages.nix` | User packages |
+| `vscode.nix` | VSCode with Wayland flags + LaTeX Workshop extension |
 | `git.nix` | Git config |
 | `bash.nix` | Shell config + general venv auto-activate |
-| `neovim.nix` | Neovim config |
+| `neovim.nix` | Neovim + LSP servers (clangd, pyright, black, gcc) + symlink `home/rms/nvim/` → `~/.config/nvim/` |
 | `niri.nix` | Niri KDL config + session tools + power management |
 | `noctalia.nix` | Noctalia bar (widgets, colours, location) |
 
@@ -91,3 +95,7 @@
 - Fixed Mako notifications: now auto-dismiss after 5 s (`default-timeout = 5000`)
 - Screenshot keys swapped: `Print` → interactive region, `Super+S` → fullscreen
 - Power management: swaylock (dark) after 5 min, monitors off after 10 min, suspend on battery after 3 h; AC never auto-suspends
+
+### 2026-03-22 (continued)
+- **LaTeX**: added `miktex` + `perl`; VSCode moved to `vscode.nix` with `programs.vscode` + LaTeX Workshop extension; auto-build on save, side-by-side PDF preview, SyncTeX; see `guides/latex.md`
+- **Neovim**: full config migrated from external drive into `home/rms/nvim/`; symlinked by HM via `xdg.configFile`; lazy.nvim manages plugins; LSP servers (clangd, pyright) + formatters (black, clang-format) provided by Nix; see `guides/neovim.md`

@@ -2,12 +2,12 @@
   description = "rms NixOS system configuration";
 
   inputs = {
-    # NixOS stable channel — matches your stateVersion 25.11
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # NixOS unstable channel
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Home Manager — same release as nixpkgs
+    # Home Manager — unstable (follows nixpkgs master)
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs"; # share nixpkgs, avoid duplicate downloads
     };
 
@@ -16,6 +16,8 @@
       url = "github:aodhanhayter/opencode-flake";
       inputs.nixpkgs.follows = "nixpkgs";  # share nixpkgs to avoid duplicates
     };
+
+
   };
 
   outputs = { self, nixpkgs, home-manager, opencode-flake, ... }:

@@ -1,6 +1,6 @@
 # NixOS Configuration
 
-A flake-based NixOS + Home Manager configuration for the `nixos` host.
+A flake-based NixOS + Home Manager configuration for the `laptop` host, tracking **nixos-unstable**.
 
 ## Layout
 
@@ -9,7 +9,7 @@ nixos-config/
 ├── flake.nix                        # Entry point — inputs & outputs
 ├── flake.lock                       # Auto-generated, commit this
 ├── hosts/
-│   └── nixos/
+│   └── laptop/
 │       ├── configuration.nix        # System-level config (boot, network, GNOME…)
 │       └── hardware-configuration.nix  # Auto-generated hardware scan
 ├── home/
@@ -25,7 +25,7 @@ nixos-config/
 export NIX_CONFIG="experimental-features = nix-command flakes"
 
 # 2. Rebuild using this repo as the source of truth
-sudo nixos-rebuild switch --flake ~/nixos-config#nixos
+sudo nixos-rebuild switch --flake ~/nixos-config#laptop
 
 # 3. After rebuild, git is installed — initialise the repo
 cd ~/nixos-config
@@ -45,14 +45,41 @@ git push -u origin main
 | Rebuild & switch | `sudo nixos-rebuild switch --flake ~/nixos-config#laptop` |
 | Test without switching | `sudo nixos-rebuild test --flake ~/nixos-config#laptop` |
 | Update all inputs | `nix flake update` |
+| Update a single input | `nix flake update nixpkgs` |
 | Garbage collect | `sudo nix-collect-garbage -d` |
 | Roll back | `sudo nixos-rebuild switch --rollback` |
+
+## Updating the flake (unstable)
+
+Because you track `nixos-unstable`, updates pull in the latest commits from all inputs.
+
+```bash
+# 1. Pull latest revisions for all inputs and rewrite flake.lock
+sudo nix flake update
+
+# 2. Test the new build without activating it
+sudo nixos-rebuild test --flake ~/nixos-config#laptop
+
+# 3. If everything looks good, switch
+sudo nixos-rebuild switch --flake ~/nixos-config#laptop
+
+# 4. Commit the updated lock file
+git add flake.lock
+git commit -m "chore: flake update $(date '+%Y-%m-%d')"
+
+# Optional — reclaim old store paths
+sudo nix-collect-garbage -d
+```
+
+> **Note:** `stateVersion` in `configuration.nix` and `home.nix` must **not** be changed
+> when switching channels. It records the NixOS release your system was *first installed*
+> on and is used to preserve backwards-compatible defaults.
 
 ## What goes where
 
 | Concern | File |
 | --- | --- |
-| Bootloader, kernel, filesystems | `hosts/nixos/hardware-configuration.nix` |
-| Networking, GNOME, audio, printing | `hosts/nixos/configuration.nix` |
+| Bootloader, kernel, filesystems | `hosts/laptop/hardware-configuration.nix` |
+| Networking, GNOME, audio, printing | `hosts/laptop/configuration.nix` |
 | User apps, shell, git, dotfiles | `home/rms/home.nix` |
 | Reusable option sets | `modules/` |

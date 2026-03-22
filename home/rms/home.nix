@@ -24,6 +24,7 @@
     bat          # better cat
     eza          # better ls
     mpv
+    gparted
 
     # Office & document viewers
     libreoffice  # full office suite

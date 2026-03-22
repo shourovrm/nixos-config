@@ -18,13 +18,26 @@
     playerctl       # media playback control (XF86 keys)
   ];
 
-  services.mako.enable = true;
+  services.mako = {
+    enable = true;
+    settings = {
+      default-timeout = 5000;   # dismiss notifications after 5 s
+      ignore-timeout  = false;
+    };
+  };
 
   services.swayidle = {
     enable   = true;
     timeouts = [
-      { timeout = 300; command = "${pkgs.swaylock}/bin/swaylock -f"; }
-      { timeout = 600; command = "niri msg action power-off-monitors"; }
+      # 5 min idle → lock screen with a dark colour
+      { timeout = 300;   command = "${pkgs.swaylock}/bin/swaylock -f -c 1a1a2e"; }
+      # 10 min idle → turn off monitors
+      { timeout = 600;   command = "niri msg action power-off-monitors"; resumeCommand = "niri msg action power-on-monitors"; }
+      # 3 h idle, but only when on battery → suspend
+      {
+        timeout = 10800;
+        command = "cat /sys/class/power_supply/*/status 2>/dev/null | grep -q Discharging && systemctl suspend || true";
+      }
     ];
   };
 
@@ -168,8 +181,9 @@
       Mod+Shift+5 { move-window-to-workspace 5; }
 
       // Screenshots
-      Mod+S   { screenshot; }
-      Print   { screenshot-screen; }
+      // Print → interactive region select; Mod+S → full screen
+      Print     { screenshot; }
+      Mod+S     { screenshot-screen; }
       Alt+Print { screenshot-window; }
 
       // Niri

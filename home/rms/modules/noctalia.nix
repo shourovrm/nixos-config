@@ -24,6 +24,22 @@
             { id = "Workspace"; hideUnoccupied = false; labelMode = "none"; }
           ];
           right = [
+            # System stats: RAM, network speed, /root disk usage %
+            {
+              id                    = "SystemMonitor";
+              compactMode           = true;
+              useMonospaceFont      = true;
+              showCpuUsage          = false;
+              showCpuTemp           = false;
+              showMemoryUsage       = true;
+              showMemoryAsPercent   = true;
+              showNetworkStats      = true;
+              showDiskUsage         = true;
+              showDiskUsageAsPercent = true;
+              diskPath              = "/";
+            }
+            # Volume — click opens audio mixer
+            { id = "Volume"; displayMode = "always"; }
             { id = "Battery"; alwaysShowPercentage = true; warningThreshold = 20; }
             {
               id                = "Clock";
@@ -32,6 +48,8 @@
               useMonospacedFont = true;
               usePrimaryColor   = true;
             }
+            # Session menu — shutdown / reboot / logout / screen off
+            { id = "SessionMenu"; }
           ];
         };
       };

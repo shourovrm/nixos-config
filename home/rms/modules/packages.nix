@@ -16,5 +16,6 @@
     libreoffice
     evince
     nodejs
+    uv              # Python package / environment manager
   ];
 }

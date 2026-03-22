@@ -12,6 +12,11 @@
     };
     bashrcExtra = ''
       [ -f ~/.secrets/apirc ] && source ~/.secrets/apirc
+
+      # Activate the general Python venv if no other venv is already active
+      if [ -z "$VIRTUAL_ENV" ] && [ -f "$HOME/.venv/general/bin/activate" ]; then
+        source "$HOME/.venv/general/bin/activate"
+      fi
     '';
   };
 }

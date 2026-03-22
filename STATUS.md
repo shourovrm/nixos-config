@@ -65,7 +65,8 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | Trigger | Action |
 | --- | --- |
 | 5 min idle | `swaylock` dark screen (`-c 1a1a2e`) |
-| 10 min idle | Monitors off |
+| 5 min 30 s idle | Monitors off (`niri msg action power-off-monitors`) |
+| Before sleep | `swaylock` (lid close, etc.) |
 | 3 h idle on battery | Suspend |
 | On AC power | Never auto-suspends |
 
@@ -99,3 +100,9 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ### 2026-03-22 (continued)
 - **LaTeX**: added `miktex` + `perl`; VSCode moved to `vscode.nix` with `programs.vscode` + LaTeX Workshop extension; auto-build on save, side-by-side PDF preview, SyncTeX; see `guides/latex.md`
 - **Neovim**: full config migrated from external drive into `home/rms/nvim/`; symlinked by HM via `xdg.configFile`; lazy.nvim manages plugins; LSP servers (clangd, pyright) + formatters (black, clang-format) provided by Nix; see `guides/neovim.md`
+
+### 2026-03-22 (idle fix)
+- Fixed swayidle monitor power-off: swayidle's systemd unit has a restricted PATH (bash only); `niri msg`, `grep`, `systemctl` were not found → silently failed; now use full Nix store paths (`${pkgs.niri}/bin/niri`, `${pkgs.gnugrep}/bin/grep`, `/run/current-system/sw/bin/systemctl`)
+- Monitors now turn off 30 s after the lock screen (was 10 min; was also broken)
+- Added `before-sleep` event to lock screen before suspend (lid close etc.)
+- Confirmed: GNOME session manager is NOT bleeding into Niri (`gsd-power` and `gnome-session` are not running in the Niri user session)

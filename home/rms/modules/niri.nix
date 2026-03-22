@@ -26,17 +26,39 @@
     };
   };
 
+  # ── Idle / power management ───────────────────────────────────────────────
+  # Root cause of previous failure: swayidle's systemd unit has a restricted
+  # PATH (only bash's bin dir). Commands like `niri`, `grep`, `systemctl` are
+  # not in that PATH and fail silently. Fix: use full Nix store paths for
+  # every external binary.
+  #
+  # GNOME bleed verdict: NO. Running `systemctl --user list-units` in the
+  # Niri session confirms that gsd-power and gnome-session are NOT running.
+  # programs.niri on NixOS keeps GNOME autostart entries (OnlyShowIn=GNOME)
+  # out of the Niri session.
   services.swayidle = {
-    enable   = true;
+    enable = true;
+    events = [
+      # Lock the screen before the system suspends (e.g. lid close)
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f -c 1a1a2e"; }
+    ];
     timeouts = [
-      # 5 min idle → lock screen with a dark colour
-      { timeout = 300;   command = "${pkgs.swaylock}/bin/swaylock -f -c 1a1a2e"; }
-      # 10 min idle → turn off monitors
-      { timeout = 600;   command = "niri msg action power-off-monitors"; resumeCommand = "niri msg action power-on-monitors"; }
-      # 3 h idle, but only when on battery → suspend
+      # 5 min idle → lock screen
+      {
+        timeout = 300;
+        command = "${pkgs.swaylock}/bin/swaylock -f -c 1a1a2e";
+      }
+      # 5 min 30 s idle → turn monitors off (30 s grace after lock)
+      # Full path required: swayidle's unit PATH only contains bash's bin.
+      {
+        timeout = 330;
+        command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+        resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+      }
+      # 3 h idle on battery → suspend
       {
         timeout = 10800;
-        command = "cat /sys/class/power_supply/*/status 2>/dev/null | grep -q Discharging && systemctl suspend || true";
+        command = ''${pkgs.gnugrep}/bin/grep -rq Discharging /sys/class/power_supply/ 2>/dev/null && /run/current-system/sw/bin/systemctl suspend || true'';
       }
     ];
   };

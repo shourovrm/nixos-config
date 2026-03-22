@@ -2,42 +2,50 @@
   description = "rms NixOS system configuration";
 
   inputs = {
-    # NixOS unstable channel
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Home Manager — unstable (follows nixpkgs master)
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs"; # share nixpkgs, avoid duplicate downloads
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Add opencode flake
     opencode-flake = {
       url = "github:aodhanhayter/opencode-flake";
-      inputs.nixpkgs.follows = "nixpkgs";  # share nixpkgs to avoid duplicates
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Noctalia shell + its quickshell dependency
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
 
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, opencode-flake, ... }:
+  outputs = { self, nixpkgs, home-manager, opencode-flake, noctalia, noctalia-qs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs   = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.rms-laptop = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/laptop/configuration.nix
+          ./hosts/rms-laptop/configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs   = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.rms = import ./home/rms/home.nix;
-            # pass opencode into home-manager's pkgs scope
+            home-manager.useGlobalPkgs        = true;
+            home-manager.useUserPackages      = true;
+            home-manager.backupFileExtension  = "backup";
+            home-manager.users.rms            = import ./home/rms/home.nix;
             home-manager.extraSpecialArgs = {
+              inherit inputs;
               opencode = opencode-flake.packages.${system}.default;
             };
           }

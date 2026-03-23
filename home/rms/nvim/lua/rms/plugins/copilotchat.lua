@@ -1,5 +1,15 @@
--- Note: `build = "make tiktoken"` is removed; it requires Rust toolchain to
--- compile a native extension and is not needed for basic operation.
+-- lua/rms/plugins/copilotchat.lua
+-- CopilotChat: AI chat panel (vertical split, 30% width) for code Q&A.
+-- `build = "make tiktoken"` is intentionally omitted — it needs Rust toolchain
+-- and is not required for normal use.
+-- Keymaps (`<leader>c` group):
+--   <leader>cc  → toggle chat panel
+--   <leader>cr  → reset chat history
+--   <leader>ce  → explain selected code
+--   <leader>cf  → fix selected code
+--   <leader>co  → optimise selected code
+--   <leader>ct  → write tests for selection
+--   <leader>cd  → write documentation for selection
 return {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {

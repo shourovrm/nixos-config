@@ -1,5 +1,19 @@
+-- lua/rms/plugins/gitsigns.lua
+-- Shows git diff hunks in the sign column and provides hunk-level operations.
+-- Keymaps (in any git-tracked buffer):
+--   ]c / [c       → next / previous hunk
+--   <leader>hs    → stage hunk
+--   <leader>hr    → reset hunk
+--   <leader>hS    → stage entire buffer
+--   <leader>hu    → undo last stage
+--   <leader>hR    → reset entire buffer
+--   <leader>hp    → preview hunk inline
+--   <leader>hb    → blame current line (full)
+--   <leader>tb    → toggle inline blame
+--   <leader>hd    → diff this file
+--   <leader>td    → toggle showing deleted lines
+--   ih (text obj) → select hunk (operator/visual)
 return {
-    "lewis6991/gitsigns.nvim",
     config = function()
         require("gitsigns").setup({
             signs = {

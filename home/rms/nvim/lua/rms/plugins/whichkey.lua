@@ -1,5 +1,9 @@
+-- lua/rms/plugins/whichkey.lua
+-- Shows a popup listing available keybindings after a prefix is pressed.
+-- Groups are labelled so the popup is readable (e.g. <leader>p = Telescope/Project).
+-- Keymap:
+--   <leader>?  → show all normal-mode keybindings immediately
 return {
-    "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
         local wk = require("which-key")

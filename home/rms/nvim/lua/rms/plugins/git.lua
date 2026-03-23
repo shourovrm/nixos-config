@@ -1,5 +1,20 @@
+-- lua/rms/plugins/git.lua
+-- vim-fugitive: full Git integration inside Neovim.
+-- Keymaps:
+--   <leader>gs  → interactive Git status buffer
+--   <leader>gc  → commit
+--   <leader>gp  → push
+--   <leader>gP  → pull
+--   <leader>gl  → log
+--   <leader>gb  → branches
+--   <leader>gB  → blame (full file annotation)
+--   <leader>gd  → diff split (horizontal)
+--   <leader>gD  → diff split (vertical)
+--   <leader>ga  → stage current file
+--   <leader>gA  → stage all files
+--   <leader>gr  → restore (discard changes) current file
+--   <leader>go  → open file/selection on GitHub (needs vim-rhubarb)
 return {
-    "tpope/vim-fugitive",
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git,            { desc = "Git status" })
         vim.keymap.set("n", "<leader>gc", ":Git commit<CR>",      { desc = "Git commit" })

@@ -1,19 +1,22 @@
 # modules/nixos/nix-settings.nix
+# Nix daemon settings: enable flakes, store optimisation, automatic GC.
 { ... }:
 
 {
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store   = true;
+    experimental-features = [ "nix-command" "flakes" ];  # required for flake-based config
+    auto-optimise-store   = true;  # hardlink identical store paths to save disk space
   };
 
-  # Weekly GC — removes old generations, keeps the last 3 via configurationLimit
+  # Run `nix-collect-garbage --delete-old` weekly via a systemd timer.
+  # This removes unreachable store paths (old rebuilds, unused dependencies).
   nix.gc = {
     automatic = true;
     dates     = "weekly";
     options   = "--delete-old";
   };
 
-  # Keep exactly 3 generations in the GRUB boot menu
+  # Limit GRUB boot entries to 3 generations so the menu stays clean.
+  # Older generations are cleaned up by the GC above.
   boot.loader.grub.configurationLimit = 3;
 }

@@ -36,6 +36,14 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # ── Container runtime (required by distrobox) ─────────────────────────────
+  # Podman is a daemonless, rootless OCI runtime.
+  # distrobox uses it to run full Linux distros as containers.
+  virtualisation.podman = {
+    enable         = true;
+    dockerCompat   = true;  # provide a `docker` shim so docker-aware scripts work
+  };
+
   # ── State version — do not change ─────────────────────────────────────────
   system.stateVersion = "25.11";
 }

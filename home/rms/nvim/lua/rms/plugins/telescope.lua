@@ -1,5 +1,19 @@
+-- lua/rms/plugins/telescope.lua
+-- Fuzzy finder over files, git objects, buffers, text, and more.
+-- Key mappings:
+--   <leader>pf  → find files in project
+--   <C-p>       → find git-tracked files
+--   <leader>fr  → recent files
+--   <leader>fh  → find files in home
+--   <leader>fa  → find files everywhere (hidden included)
+--   <leader>ps  → live grep (search text)
+--   <leader>fw  → grep word under cursor
+--   <leader>/   → fuzzy search current buffer
+--   <leader>pb  → list open buffers
+--   <leader>pp  → switch projects
+--   <leader>fk  → list keymaps
+--   <leader>fc  → list commands
 return {
-    "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         local builtin   = require("telescope.builtin")

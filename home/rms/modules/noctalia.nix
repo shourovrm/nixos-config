@@ -24,10 +24,12 @@
             { id = "Workspace"; hideUnoccupied = false; labelMode = "none"; }
           ];
           right = [
-            # System stats: RAM, network speed, /root disk usage %
+            # System stats: RAM %, net speed, /root disk % shown inline.
+            # compactMode = true  → mini-gauge icon only (no text, click to see values)
+            # compactMode = false → displays the actual values as text in the bar
             {
               id                    = "SystemMonitor";
-              compactMode           = true;
+              compactMode           = false;  # show values inline, not just icon
               useMonospaceFont      = true;
               showCpuUsage          = false;
               showCpuTemp           = false;

@@ -1,3 +1,7 @@
+-- lua/rms/plugins/alpha.lua
+-- Dashboard / start screen shown when Neovim opens with no file argument.
+-- Displays a custom ASCII header, quick-action buttons, and a status footer
+-- (date/time, plugin count, Neovim version).
 return {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

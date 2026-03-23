@@ -1,5 +1,10 @@
+-- lua/rms/plugins/cmp.lua
+-- Completion engine wired to three sources:
+--   nvim_lsp  → LSP completions (clangd, pyright, etc.)
+--   buffer    → words visible in open buffers
+--   path      → filesystem paths
+-- <CR> confirms the selected suggestion.
 return {
-    "hrsh7th/nvim-cmp",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",

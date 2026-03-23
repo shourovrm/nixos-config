@@ -1,5 +1,11 @@
+-- lua/rms/plugins/format.lua
+-- conform.nvim: run code formatters on demand or on save.
+-- Formatters used (must be on PATH; provided by neovim.nix extraPackages):
+--   C/C++/CUDA → clang-format
+--   Python     → black
+-- Keymap:
+--   <leader>ff  → format current file (falls back to LSP if no formatter matches)
 return {
-    "stevearc/conform.nvim",
     config = function()
         require("conform").setup({
             formatters_by_ft = {

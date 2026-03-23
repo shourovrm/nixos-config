@@ -27,5 +27,10 @@
     # ── Container / distro tooling ───────────────────────────────────
     distrobox    # run any Linux distro as a rootless container; integrates with host
     podman       # OCI container runtime (backend for distrobox; daemonless)
-  ];
+    # ── News / media consumption (newsboat ecosystem) ────────────────────
+    newsboat     # TUI RSS/Atom reader; config in home/rms/modules/newsboat.nix
+    yt-dlp       # YouTube / streaming site downloader (queued by qndl)
+    links2       # text-mode web browser for reading articles in terminal
+    task-spooler # tsp: serialise background jobs (used by qndl for downloads)
+    urlscan      # TUI URL selector for newsboat external-url-viewer  ];
 }

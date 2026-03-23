@@ -12,7 +12,8 @@ pkgs.stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp qndl $out/bin/qndl
-    chmod +x $out/bin/qndl
+    cp qndl       $out/bin/qndl
+    cp qndl-audio $out/bin/qndl-audio
+    chmod +x $out/bin/qndl $out/bin/qndl-audio
   '';
 }

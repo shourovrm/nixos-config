@@ -10,6 +10,7 @@
     ./modules/git.nix
     ./modules/bash.nix
     ./modules/neovim.nix
+    ./modules/newsboat.nix  # Newsboat RSS reader
     ./modules/niri.nix
     ./modules/noctalia.nix
   ];

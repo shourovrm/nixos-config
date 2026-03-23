@@ -218,7 +218,7 @@
       Mod+B     { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
 
       // Keyboard layout: cycle through configured XKB layouts (Super+Space)
-      Mod+Space { switch-keyboard-layout "next"; }
+      Mod+Space { switch-layout "next"; }
     }
 
     // ── Startup ───────────────────────────────────────────────────────────

@@ -104,6 +104,9 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 
 ## Changelog
 
+### 2026-03-23 (session 4)
+- **Fix:** `switch-keyboard-layout` is not a valid niri action name; corrected to `switch-layout "next"` — niri config was failing to parse, causing the status bar and wallpaper not to load; confirmed valid with `niri validate`
+
 ### 2026-03-23 (session 3)
 - **Fix:** `packages.nix` had a syntax error (`];` merged onto same line as `urlscan`) — fixed
 - **Fix:** `task-spooler` is not a valid Nix identifier; corrected to `taskspooler` (the actual nixpkgs attribute name)

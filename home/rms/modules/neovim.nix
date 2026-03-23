@@ -29,6 +29,18 @@
     ];
   };
 
+  # Provide a desktop entry so file managers show a proper editor icon and
+  # can hand text files to the Neovim wrapper directly.
+  xdg.desktopEntries.nvim-open = {
+    name = "Neovim wrapper";
+    genericName = "Text Editor";
+    exec = "nvim-open %F";
+    icon = "nvim";
+    terminal = false;
+    categories = [ "Utility" "TextEditor" ];
+    mimeType = [ "text/plain" ];
+  };
+
   # Symlink the Lua config from this repo into ~/.config/nvim.
   # Uses recursive = true so lazy-lock.json can still be written by lazy.nvim.
   xdg.configFile."nvim" = {

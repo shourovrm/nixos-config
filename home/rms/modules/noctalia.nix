@@ -24,6 +24,9 @@
             { id = "Workspace"; hideUnoccupied = false; labelMode = "none"; }
           ];
           right = [
+            # Current keyboard layout — click cycles to next layout; Super+Space also works
+            { id = "KeyboardLayout"; }
+
             # System stats: RAM %, net speed, /root disk % shown inline.
             # compactMode = true  → mini-gauge icon only (no text, click to see values)
             # compactMode = false → displays the actual values as text in the bar
@@ -50,6 +53,17 @@
               useMonospacedFont = true;
               usePrimaryColor   = true;
             }
+            # Newsboat unread articles — text from newsboat-count script; click opens newsboat
+            {
+              id              = "CustomButton";
+              icon            = "application-rss+xml";
+              textCommand     = "newsboat-count";  # script outputs "  <n>" or ""
+              textIntervalMs  = 300000;            # refresh every 5 minutes
+              leftClickExec   = "newsboat-open";   # opens newsboat in foot terminal
+              showIcon        = true;
+            }
+            # Dark / light mode toggle for Noctalia colour scheme
+            { id = "DarkMode"; }
             # Session menu — shutdown / reboot / logout / screen off
             { id = "SessionMenu"; }
           ];

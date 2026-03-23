@@ -103,7 +103,7 @@
         xkb {
           layout "us,bd"        // us = English, bd = Bangla
           variant ",probhat"    // second layout uses Probhat
-          options "grp:alt_shift_toggle" // Alt+Shift switches layouts
+          // No grp: toggle option needed — niri's own Super+Space bind handles layout cycling
         }
       }
       touchpad {
@@ -147,7 +147,7 @@
     binds {
       // Apps
       Mod+T { spawn "foot"; }
-      Mod+D { spawn "fuzzel"; }
+
       Mod+Ctrl+L { spawn "swaylock" "-f"; }
 
       // Volume (wpctl comes with PipeWire)
@@ -213,9 +213,12 @@
       Mod+O       { toggle-overview; }
 
       // Noctalia IPC
-      Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+      Mod+D     { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }  // open Noctalia launcher
       Mod+N     { spawn "noctalia-shell" "ipc" "call" "notifications" "togglePanel"; }
       Mod+B     { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+
+      // Keyboard layout: cycle through configured XKB layouts (Super+Space)
+      Mod+Space { switch-keyboard-layout "next"; }
     }
 
     // ── Startup ───────────────────────────────────────────────────────────

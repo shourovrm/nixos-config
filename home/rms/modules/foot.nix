@@ -46,7 +46,7 @@
       # ── Colours (Catppuccin Mocha) ────────────────────────────────────────
       # Background has 5 % transparency (alpha = 0.95) for a slight blur effect.
       # Foreground and palette follow the official Catppuccin Mocha spec.
-      colors = {
+      colors-dark = {
         # 5 % transparent background — complements the Noctalia dark overlay
         alpha      = "0.95";
 

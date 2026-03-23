@@ -39,8 +39,8 @@
 | `link-handler` | `link-handler` | Smart URL dispatcher used as newsboat browser |
 | `qndl` | `qndl`, `qndl-audio` | Queue downloads with task-spooler (tsp) |
 | `newsboat-utils` | `newsboat-count`, `newsboat-open` | Noctalia bar newsboat widget helpers |
-| `weather-utils` | `weather-bar`, `weather-open` | Noctalia bar weather widget (wttr.in; 30 min refresh; click shows forecast) |
-| `nvim-open` | `nvim-open` | Open files in nvim inside foot; foot closes when nvim exits |
+| `weather-utils` | `weather-bar`, `weather-open` | Noctalia bar weather widget (wttr.in emoji + temp; 30 min refresh; click shows forecast) |
+| `nvim-open` | `nvim-open` | Open files in nvim inside foot; foot closes when nvim exits (desktop entry uses a Neovim icon) |
 
 ### VSCode (Home Manager — `vscode.nix`)
 Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
@@ -65,7 +65,7 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ### Noctalia bar widgets
 - **Left:** ControlCenter (distro logo), Network, Bluetooth
 - **Center:** Workspace
-- **Right:** KeyboardLayout, SystemMonitor (RAM %, net speed, disk % shown inline), Volume, Battery, Weather (CustomButton — wttr.in temp, click=forecast), Newsboat unread count (CustomButton), DarkMode toggle, Clock, SessionMenu
+- **Right:** KeyboardLayout, SystemMonitor (RAM %, net speed, disk % shown inline), Volume, Battery, Weather (CustomButton — wttr.in emoji + temp, click=forecast), Newsboat unread count (CustomButton), DarkMode toggle, Clock, SessionMenu
 
 ### Niri keybinds (notable)
 | Key | Action |
@@ -106,6 +106,11 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 
 ### 2026-03-23 (session 4)
 - **Fix:** `switch-keyboard-layout` is not a valid niri action name; corrected to `switch-layout "next"` — niri config was failing to parse, causing the status bar and wallpaper not to load; confirmed valid with `niri validate`
+
+### 2026-03-23 (session 5)
+- **Foot:** updated the terminal colour section to `[colors-dark]` to match upstream foot syntax and remove the deprecation warning
+- **Neovim wrapper:** `nvim-open` now execs Neovim through foot with a proper app id/title, and the Home Manager desktop entry now advertises Neovim instead of a generic launcher
+- **Widgets:** weather now shows a weather symbol plus temperature from wttr.in, and Newsboat now shows the unread count directly in the bar
 
 ### 2026-03-23 (session 3)
 - **Fix:** `packages.nix` had a syntax error (`];` merged onto same line as `urlscan`) — fixed

@@ -2,14 +2,15 @@
 # newsboat-count — output the number of unread Newsboat articles.
 #
 # Used by the Noctalia bar CustomButton widget (textCommand field).
-# Prints "  <N>" when there are unread articles, or prints nothing (empty)
-# when the count is 0 — noctalia hides the widget text when empty.
+# Prints a newspaper icon plus the unread count so the widget is self-describing.
 #
 # Runs newsboat with -x print-unread which exits quickly without the TUI.
 
 count=$(newsboat -x print-unread 2>/dev/null | awk '{print $1}')
 
-# Validate: only print when count is a positive integer
-if [ "${count}" -gt 0 ] 2>/dev/null; then
-  printf '  %s' "$count"
+# Validate: print a zero-safe count, or 0 when the command fails.
+if [ "${count}" -ge 0 ] 2>/dev/null; then
+  printf '📰 %s' "$count"
+else
+  printf '📰 0'
 fi

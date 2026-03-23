@@ -53,23 +53,20 @@
               useMonospacedFont = true;
               usePrimaryColor   = true;
             }
-            # Current temperature — text from weather-bar (wttr.in); click opens forecast
+            # Current temperature — weather-bar emits a weather symbol plus temp;
+            # click opens the full forecast in foot.
             {
               id             = "CustomButton";
-              icon           = "weather-clear";
-              textCommand    = "weather-bar";   # outputs "+26°C" or "N/A"
+              textCommand    = "weather-bar";   # outputs "🌦 +26°C" or "N/A"
               textIntervalMs = 1800000;         # refresh every 30 minutes
               leftClickExec  = "weather-open";  # opens full 3-day forecast in foot
-              showIcon       = true;
             }
-            # Newsboat unread articles — text from newsboat-count script; click opens newsboat
+            # Newsboat unread articles — shows a newspaper emoji plus unread count.
             {
               id              = "CustomButton";
-              icon            = "application-rss+xml";
-              textCommand     = "newsboat-count";  # script outputs "  <n>" or ""
+              textCommand     = "newsboat-count";  # script outputs "📰 <n>"
               textIntervalMs  = 300000;            # refresh every 5 minutes
               leftClickExec   = "newsboat-open";   # opens newsboat in foot terminal
-              showIcon        = true;
             }
             # Dark / light mode toggle for Noctalia colour scheme
             { id = "DarkMode"; }

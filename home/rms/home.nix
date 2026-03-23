@@ -9,6 +9,7 @@
     ./modules/vscode.nix
     ./modules/git.nix
     ./modules/bash.nix
+    ./modules/foot.nix      # foot terminal — Catppuccin Mocha theme, JetBrains Mono
     ./modules/neovim.nix
     ./modules/newsboat.nix  # Newsboat RSS reader
     ./modules/niri.nix

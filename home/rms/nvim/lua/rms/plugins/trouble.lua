@@ -5,6 +5,7 @@
 --   <leader>xx  → toggle diagnostics panel
 --   <leader>xw  → toggle workspace diagnostics (all open files)
 return {
+    "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("trouble").setup({})

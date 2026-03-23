@@ -1,8 +1,5 @@
 -- lua/rms/plugins/init.lua
--- Explicitly load plugins that lazy.nvim would otherwise auto-discover out of
--- alphabetical order (e.g. treesitter must init before other parsers attach).
--- lazy.nvim still auto-discovers all other .lua files in this directory.
-return {
-  require("rms.plugins.treesitter"),
-  require("rms.plugins.comment"),
-}
+-- lazy.nvim auto-discovers every *.lua file in this directory as a plugin spec.
+-- Nothing explicit is needed here; returning {} avoids double-loading files that
+-- would otherwise be both required here AND discovered automatically.
+return {}

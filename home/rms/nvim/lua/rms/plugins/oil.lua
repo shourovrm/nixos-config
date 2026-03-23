@@ -4,6 +4,7 @@
 -- Keymap:
 --   <leader>e  → toggle Oil sidebar (32-col split on the left)
 return {
+    "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("oil").setup({

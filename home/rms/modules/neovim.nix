@@ -20,6 +20,12 @@
 
       # Tree-sitter needs a C compiler to build parsers on first launch
       gcc
+
+      # Clipboard integration under Wayland.
+      # vim.opt.clipboard = "unnamedplus" in set.lua tells Neovim to use the
+      # system clipboard; wl-copy / wl-paste (from wl-clipboard) are the
+      # Wayland providers Neovim picks up automatically.
+      wl-clipboard
     ];
   };
 

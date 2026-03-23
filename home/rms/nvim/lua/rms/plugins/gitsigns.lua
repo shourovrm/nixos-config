@@ -13,8 +13,7 @@
 --   <leader>hd    → diff this file
 --   <leader>td    → toggle showing deleted lines
 --   ih (text obj) → select hunk (operator/visual)
-return {
-    config = function()
+return {    "lewis6991/gitsigns.nvim",    config = function()
         require("gitsigns").setup({
             signs = {
                 add          = { text = "│" },

@@ -6,6 +6,7 @@
 --   gc{motion}  → line-comment over a motion (e.g. gc5j = comment 5 lines down)
 --   gb{motion}  → block-comment over a motion
 return {
+    "numToStr/Comment.nvim",
     config = function()
         require("Comment").setup({
             toggler = {

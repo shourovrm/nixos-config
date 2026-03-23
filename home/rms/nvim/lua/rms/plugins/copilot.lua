@@ -7,6 +7,7 @@
 --   <C-k>  → previous suggestion
 --   <C-h>  → dismiss suggestion
 return {
+    "zbirenbaum/copilot.lua",
     cmd   = "Copilot",
     event = "InsertEnter",
     config = function()

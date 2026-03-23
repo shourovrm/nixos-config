@@ -4,6 +4,7 @@
 -- Keymap:
 --   <leader>?  → show all normal-mode keybindings immediately
 return {
+    "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
         local wk = require("which-key")

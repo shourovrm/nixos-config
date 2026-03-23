@@ -6,6 +6,7 @@
 -- Keymap:
 --   <leader>ff  → format current file (falls back to LSP if no formatter matches)
 return {
+    "stevearc/conform.nvim",
     config = function()
         require("conform").setup({
             formatters_by_ft = {

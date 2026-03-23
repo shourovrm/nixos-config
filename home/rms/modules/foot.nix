@@ -21,8 +21,9 @@
       # ── Main ──────────────────────────────────────────────────────────────
       main = {
         # JetBrains Mono: excellent legibility, good ligature coverage
-        font       = "JetBrains Mono:size=10";
-        dpi-aware  = "yes";  # scale font by display DPI automatically
+        font      = "JetBrains Mono:size=10";
+        dpi-aware = "yes";  # scale font by display DPI automatically
+        pad       = "8x8";  # 8 px horizontal × 8 px vertical inner padding
         # Shell inherits from the system default (bash via home.nix)
       };
 
@@ -42,13 +43,8 @@
         hide-when-typing = "yes";  # cursor disappears while you type
       };
 
-      # ── Padding ───────────────────────────────────────────────────────────
-      pad = {
-        pad = "8x8";   # 8 px horizontal × 8 px vertical inner margin
-      };
-
       # ── Colours (Catppuccin Mocha) ────────────────────────────────────────
-      # Background has 5 % transparency (alpha=0.95) for a slight blur effect.
+      # Background has 5 % transparency (alpha = 0.95) for a slight blur effect.
       # Foreground and palette follow the official Catppuccin Mocha spec.
       colors = {
         # 5 % transparent background — complements the Noctalia dark overlay
@@ -85,8 +81,8 @@
 
       # ── Desktop notifications ─────────────────────────────────────────────
       bell = {
-        urgent  = "yes";   # mark window urgent in taskbar on BEL
-        notify  = "no";    # do not send a desktop notification per BEL
+        urgent = "yes";  # mark window urgent in taskbar on BEL
+        notify = "no";   # do not send a desktop notification per BEL
       };
     };
   };

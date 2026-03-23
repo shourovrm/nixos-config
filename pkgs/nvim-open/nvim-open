@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# nvim-open — open a file in Neovim inside a foot terminal window.
+#
+# foot is the parent process; when Neovim exits (e.g. :q), foot exits too,
+# so the terminal window closes automatically.  This behaviour matches the
+# expectation that the "editor window" disappears when you quit the editor.
+#
+# Usage: nvim-open [file ...]
+# Example: nvim-open ~/.config/newsboat/config
+
+exec foot nvim "$@"

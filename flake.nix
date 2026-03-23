@@ -44,6 +44,17 @@
       pkgs   = nixpkgs.legacyPackages.${system};
     in
     {
+      # ── Custom packages (pkgs/ directory) ───────────────────────────────────
+      # Each entry can be built with: nix build .#<name>
+      # They are also consumed by home/rms/modules/scripts.nix via callPackage.
+      packages.${system} = {
+        fuzzel-handler  = pkgs.callPackage ./pkgs/fuzzel-handler  {};
+        link-handler    = pkgs.callPackage ./pkgs/link-handler    {};
+        qndl            = pkgs.callPackage ./pkgs/qndl            {};
+        newsboat-utils  = pkgs.callPackage ./pkgs/newsboat-utils  {};
+        nvim-open       = pkgs.callPackage ./pkgs/nvim-open       {};
+      };
+
       # One attribute per machine. The key (rms-laptop) must match:
       #   boot.loader.grub entry and `nixos-rebuild --flake .#rms-laptop`
       nixosConfigurations.rms-laptop = nixpkgs.lib.nixosSystem {

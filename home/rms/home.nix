@@ -5,6 +5,7 @@
 {
   imports = [
     ./modules/packages.nix
+    ./modules/scripts.nix   # custom scripts from pkgs/ (fuzzel-handler, link-handler, qndl, …)
     ./modules/vscode.nix
     ./modules/git.nix
     ./modules/bash.nix

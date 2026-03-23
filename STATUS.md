@@ -4,7 +4,7 @@
 
 ---
 
-## Current configuration — 2026-03-22
+## Current configuration — 2026-03-23
 
 ### Host
 | Field | Value |
@@ -24,13 +24,22 @@
 | Audio | PipeWire |
 | Bluetooth | enabled (blueman) |
 | Keyring | gnome-keyring-daemon (PAM auto-unlock at GDM) |
-| Keyboard layouts | English (US) + Bangla Probhat — `Alt+Shift` to switch |
+| Keyboard layouts | English (US) + Bangla Probhat — `Super+Space` to switch |
 
 ### System packages (in `configuration.nix`)
 `git` `wget` `curl` `zathura`
 
 ### User packages (Home Manager — `packages.nix`)
-`opencode` `firefox` `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv` `miktex` `perl`
+`opencode` `firefox` `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv` `miktex` `perl` `distrobox` `podman` `newsboat` `yt-dlp` `links2` `task-spooler` `urlscan`
+
+### Custom scripts (Home Manager — `pkgs/` + `scripts.nix`)
+| Script | Binary | Purpose |
+| --- | --- | --- |
+| `fuzzel-handler` | `fuzzel-handler` | fuzzel --dmenu URL/file handler (open, mpv, yt-dlp, etc.) |
+| `link-handler` | `link-handler` | Smart URL dispatcher used as newsboat browser |
+| `qndl` | `qndl`, `qndl-audio` | Queue downloads with task-spooler (tsp) |
+| `newsboat-utils` | `newsboat-count`, `newsboat-open` | Noctalia bar newsboat widget helpers |
+| `nvim-open` | `nvim-open` | Open files in nvim inside foot; foot closes when nvim exits |
 
 ### VSCode (Home Manager — `vscode.nix`)
 Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
@@ -42,17 +51,29 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | Module | Purpose |
 | --- | --- |
 | `packages.nix` | User packages |
+| `scripts.nix` | Wires `pkgs/` custom scripts into home.packages |
 | `vscode.nix` | VSCode with Wayland flags + LaTeX Workshop extension |
 | `git.nix` | Git config |
 | `bash.nix` | Shell config + general venv auto-activate |
-| `neovim.nix` | Neovim + LSP servers (clangd, pyright, black, gcc) + symlink `home/rms/nvim/` → `~/.config/nvim/` |
+| `foot.nix` | foot terminal — Catppuccin Mocha, JetBrains Mono 10pt, 5% transparency |
+| `neovim.nix` | Neovim + LSP servers (clangd, pyright, black, gcc) + wl-clipboard + symlink `home/rms/nvim/` → `~/.config/nvim/` |
+| `newsboat.nix` | Newsboat RSS reader — vim keybinds, macros, Catppuccin colours, 22 feeds |
 | `niri.nix` | Niri KDL config + session tools + power management |
 | `noctalia.nix` | Noctalia bar (widgets, colours, location) |
 
 ### Noctalia bar widgets
 - **Left:** ControlCenter (distro logo), Network, Bluetooth
 - **Center:** Workspace
-- **Right:** SystemMonitor (RAM %, net speed, disk %), Volume, Battery, Clock, SessionMenu
+- **Right:** KeyboardLayout, SystemMonitor (RAM %, net speed, disk % shown inline), Volume, Battery, Newsboat unread count (CustomButton), DarkMode toggle, Clock, SessionMenu
+
+### Niri keybinds (notable)
+| Key | Action |
+| --- | --- |
+| `Super+D` | Toggle Noctalia launcher |
+| `Super+Space` | Switch keyboard layout (next) |
+| `Super+Return` | Open foot terminal |
+| `Super+S` | Full-screen screenshot |
+| `Print` | Interactive region screenshot |
 
 ### Screenshot keybinds
 | Key | Action |
@@ -81,6 +102,25 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ---
 
 ## Changelog
+
+### 2026-03-23 (session 2)
+- **Keyboard layout:** `Alt+Shift` → `Super+Space`; added `KeyboardLayout` widget to Noctalia bar right side
+- **Noctalia launcher:** `Super+D` now opens Noctalia launcher (was fuzzel); fuzzel still available via `fuzzel-handler`
+- **DarkMode widget:** Added DarkMode toggle to Noctalia bar right side
+- **Neovim:** Fixed all 12 plugin specs (missing name as first element); `init.lua` now returns `{}` (lazy auto-discovers); `git.lua` refactored to include vim-rhubarb; added `wl-clipboard` to extraPackages for Wayland clipboard (`unnamedplus` register)
+- **pkgs/ system:** Created custom derivations: `fuzzel-handler`, `link-handler`, `qndl` (+ `qndl-audio`), `newsboat-utils` (`newsboat-count`/`newsboat-open`), `nvim-open`; wired via `scripts.nix`; also registered in `flake.nix` packages output
+- **Newsboat:** Full setup — `programs.newsboat` HM config, vim keybinds, macros (`,v`,t`,a`,w`,d`,c`), Catppuccin colours, 22 feeds (news, Reddit, YouTube, arXiv); Noctalia bar widget shows unread count
+- **foot:** `programs.foot` HM config — Catppuccin Mocha, JetBrains Mono 10pt, 5% transparency, beam cursor, 10 000-line scrollback
+- **Packages added:** `newsboat` `yt-dlp` `links2` `task-spooler` `urlscan`
+- **Guides:** Updated `neovim.md` (clipboard section, init.lua note); created `newsboat.md`
+
+### 2026-03-23
+- Added repo-wide comments to all Nix and Lua configuration files so each segment is easier to read
+- Added `distrobox` plus `podman` support and created `guides/distrobox.md`
+- Fixed Noctalia SystemMonitor to show values inline again by disabling compact mode
+- Updated `.gitignore` to exclude LaTeX build artefacts and editor scratch files
+- Verified `nixos-rebuild switch` succeeded after the changes
+- Confirmed the 3-hour battery suspend rule is working as intended; it only suspends when the machine is actually discharging
 
 ### 2026-03-22
 - Restructured repo layout (moved hosts, modules into final folder structure)

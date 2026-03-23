@@ -216,11 +216,11 @@ Press `<leader>?` at any time to see a popup of all keybindings.
 home/rms/nvim/
 ├── init.lua                     ← entry point
 └── lua/rms/
-    ├── set.lua                  ← editor options
+    ├── set.lua                  ← editor options (clipboard = "unnamedplus")
     ├── remap.lua                ← base keymaps
     ├── lazy.lua                 ← lazy.nvim bootstrap
     └── plugins/
-        ├── init.lua             ← explicit plugin list
+        ├── init.lua             ← returns {} — lazy auto-discovers all *.lua files
         ├── alpha.lua            ← dashboard
         ├── bufferline.lua       ← buffer tabs
         ├── cmp.lua              ← completion
@@ -229,7 +229,7 @@ home/rms/nvim/
         ├── copilot.lua          ← GitHub Copilot inline
         ├── copilotchat.lua      ← CopilotChat sidebar
         ├── format.lua           ← conform.nvim formatter
-        ├── git.lua              ← vim-fugitive git UI
+        ├── git.lua              ← vim-fugitive + vim-rhubarb
         ├── gitsigns.lua         ← gutter git signs + hunk ops
         ├── lsp.lua              ← LSP config (Mason UI only on NixOS)
         ├── lualine.lua          ← status bar
@@ -240,6 +240,22 @@ home/rms/nvim/
         ├── trouble.lua          ← diagnostics panel
         └── whichkey.lua         ← keybinding popup
 ```
+
+---
+
+## System clipboard (Wayland)
+
+`vim.opt.clipboard = "unnamedplus"` is set in `set.lua`, so yanks/pastes use the
+OS clipboard by default. On Wayland, Neovim uses `wl-copy` / `wl-paste` from the
+`wl-clipboard` package (provided via `extraPackages` in `neovim.nix`).
+
+| Action | Neovim shortcut |
+| --- | --- |
+| Yank to system clipboard | `y` (any normal yank) |
+| Paste from system clipboard | `p` (normal paste) |
+| Paste from clipboard in insert mode | `<C-r>+` |
+
+> No `"+y` / `"+p` prefix needed—the `+` register is always active.
 
 ---
 

@@ -21,6 +21,10 @@ Detailed documentation lives in the [`guides/`](guides/) folder:
 | [flake.md](guides/flake.md) | Rebuilding, updating inputs, adding packages, multi-host setup |
 | [niri.md](guides/niri.md) | Niri keybindings, bar widgets, power/idle behaviour, keyring |
 | [uv-python.md](guides/uv-python.md) | Python environments, package management, inline deps |
+| [neovim.md](guides/neovim.md) | Neovim plugins, LSP, clipboard, keybindings |
+| [newsboat.md](guides/newsboat.md) | Newsboat RSS reader, link macros, download queue |
+| [latex.md](guides/latex.md) | LaTeX with MiKTeX + VSCode LaTeX Workshop |
+| [distrobox.md](guides/distrobox.md) | Running other distros with Distrobox + Podman |
 
 ## Layout
 
@@ -33,7 +37,17 @@ nixos-config/
 │   ├── nixos-install.md
 │   ├── flake.md
 │   ├── niri.md
-│   └── uv-python.md
+│   ├── uv-python.md
+│   ├── neovim.md
+│   ├── newsboat.md
+│   ├── latex.md
+│   └── distrobox.md
+├── pkgs/                                  # Custom Nix packages (callPackage)
+│   ├── fuzzel-handler/                    # fuzzel --dmenu URL/file handler
+│   ├── link-handler/                      # Smart URL dispatcher
+│   ├── qndl/                              # task-spooler download queue
+│   ├── newsboat-utils/                    # Noctalia bar newsboat widgets
+│   └── nvim-open/                         # foot+nvim wrapper (auto-close)
 ├── hosts/
 │   └── rms-laptop/
 │       ├── configuration.nix              # Machine identity, bootloader, user
@@ -54,6 +68,9 @@ nixos-config/
             ├── git.nix
             ├── bash.nix
             ├── neovim.nix
+            ├── foot.nix                   # foot terminal (Catppuccin Mocha)
+            ├── newsboat.nix               # Newsboat RSS reader
+            ├── scripts.nix                # Wires pkgs/ custom scripts
             ├── niri.nix                   # KDL config, session tools, power
             └── noctalia.nix               # Noctalia bar (Home Manager module)
 ```

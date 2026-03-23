@@ -112,6 +112,9 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 - **Neovim wrapper:** `nvim-open` now execs Neovim through foot with a proper app id/title, and the Home Manager desktop entry now advertises Neovim instead of a generic launcher
 - **Widgets:** weather now shows a weather symbol plus temperature from wttr.in, and Newsboat now shows the unread count directly in the bar
 
+### 2026-03-23 (session 6)
+- **Widgets:** hid the built-in left icon on both Noctalia CustomButton widgets so the weather and Newsboat buttons stay text-only apart from their emoji/status text
+
 ### 2026-03-23 (session 3)
 - **Fix:** `packages.nix` had a syntax error (`];` merged onto same line as `urlscan`) — fixed
 - **Fix:** `task-spooler` is not a valid Nix identifier; corrected to `taskspooler` (the actual nixpkgs attribute name)

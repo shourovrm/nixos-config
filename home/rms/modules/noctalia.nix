@@ -57,6 +57,7 @@
             # click opens the full forecast in foot.
             {
               id             = "CustomButton";
+              showIcon       = false;
               textCommand    = "weather-bar";   # outputs "🌦 +26°C" or "N/A"
               textIntervalMs = 1800000;         # refresh every 30 minutes
               leftClickExec  = "weather-open";  # opens full 3-day forecast in foot
@@ -64,6 +65,7 @@
             # Newsboat unread articles — shows a newspaper emoji plus unread count.
             {
               id              = "CustomButton";
+              showIcon        = false;
               textCommand     = "newsboat-count";  # script outputs "📰 <n>"
               textIntervalMs  = 300000;            # refresh every 5 minutes
               leftClickExec   = "newsboat-open";   # opens newsboat in foot terminal

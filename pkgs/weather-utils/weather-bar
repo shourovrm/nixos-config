@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# weather-bar — print current temperature for the Noctalia bar CustomButton widget.
+# Uses wttr.in with IP-based location detection (no API key required).
+# Output: "+26°C"  or  "N/A" on failure.
+set -euo pipefail
+
+temp=$(curl -sf --connect-timeout 5 --max-time 10 "wttr.in/?format=%t" 2>/dev/null) || true
+
+if [[ -n "$temp" ]]; then
+  echo "$temp"
+else
+  echo "N/A"
+fi

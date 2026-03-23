@@ -31,6 +31,7 @@
     newsboat     # TUI RSS/Atom reader; config in home/rms/modules/newsboat.nix
     yt-dlp       # YouTube / streaming site downloader (queued by qndl)
     links2       # text-mode web browser for reading articles in terminal
-    task-spooler # tsp: serialise background jobs (used by qndl for downloads)
-    urlscan      # TUI URL selector for newsboat external-url-viewer  ];
+    taskspooler  # tsp: serialise background jobs (used by qndl for downloads)
+    urlscan      # TUI URL selector for newsboat external-url-viewer
+  ];
 }

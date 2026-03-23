@@ -53,6 +53,15 @@
               useMonospacedFont = true;
               usePrimaryColor   = true;
             }
+            # Current temperature — text from weather-bar (wttr.in); click opens forecast
+            {
+              id             = "CustomButton";
+              icon           = "weather-clear";
+              textCommand    = "weather-bar";   # outputs "+26°C" or "N/A"
+              textIntervalMs = 1800000;         # refresh every 30 minutes
+              leftClickExec  = "weather-open";  # opens full 3-day forecast in foot
+              showIcon       = true;
+            }
             # Newsboat unread articles — text from newsboat-count script; click opens newsboat
             {
               id              = "CustomButton";

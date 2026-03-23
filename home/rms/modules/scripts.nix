@@ -15,6 +15,7 @@ let
   qndl           = pkgs.callPackage ../../../pkgs/qndl            {};
   newsboatUtils  = pkgs.callPackage ../../../pkgs/newsboat-utils  {};
   nvimOpen       = pkgs.callPackage ../../../pkgs/nvim-open       {};
+  weatherUtils   = pkgs.callPackage ../../../pkgs/weather-utils   {};
 in
 {
   home.packages = [
@@ -23,5 +24,6 @@ in
     qndl            # qndl:           queue downloads with task-spooler
     newsboatUtils   # newsboat-count + newsboat-open: bar widget helpers
     nvimOpen        # nvim-open:      open files in Neovim+foot; foot closes on exit
+    weatherUtils    # weather-bar + weather-open: bar weather widget scripts
   ];
 }

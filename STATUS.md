@@ -30,7 +30,7 @@
 `git` `wget` `curl` `zathura`
 
 ### User packages (Home Manager — `packages.nix`)
-`opencode` `firefox` `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv` `miktex` `perl` `distrobox` `podman` `newsboat` `yt-dlp` `links2` `task-spooler` `urlscan`
+`opencode` `firefox` `btop` `ripgrep` `fd` `bat` `eza` `mpv` `gparted` `libreoffice` `evince` `nodejs` `uv` `miktex` `perl` `distrobox` `podman` `newsboat` `yt-dlp` `links2` `taskspooler` `urlscan`
 
 ### Custom scripts (Home Manager — `pkgs/` + `scripts.nix`)
 | Script | Binary | Purpose |
@@ -39,6 +39,7 @@
 | `link-handler` | `link-handler` | Smart URL dispatcher used as newsboat browser |
 | `qndl` | `qndl`, `qndl-audio` | Queue downloads with task-spooler (tsp) |
 | `newsboat-utils` | `newsboat-count`, `newsboat-open` | Noctalia bar newsboat widget helpers |
+| `weather-utils` | `weather-bar`, `weather-open` | Noctalia bar weather widget (wttr.in; 30 min refresh; click shows forecast) |
 | `nvim-open` | `nvim-open` | Open files in nvim inside foot; foot closes when nvim exits |
 
 ### VSCode (Home Manager — `vscode.nix`)
@@ -64,7 +65,7 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ### Noctalia bar widgets
 - **Left:** ControlCenter (distro logo), Network, Bluetooth
 - **Center:** Workspace
-- **Right:** KeyboardLayout, SystemMonitor (RAM %, net speed, disk % shown inline), Volume, Battery, Newsboat unread count (CustomButton), DarkMode toggle, Clock, SessionMenu
+- **Right:** KeyboardLayout, SystemMonitor (RAM %, net speed, disk % shown inline), Volume, Battery, Weather (CustomButton — wttr.in temp, click=forecast), Newsboat unread count (CustomButton), DarkMode toggle, Clock, SessionMenu
 
 ### Niri keybinds (notable)
 | Key | Action |
@@ -102,6 +103,11 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ---
 
 ## Changelog
+
+### 2026-03-23 (session 3)
+- **Fix:** `packages.nix` had a syntax error (`];` merged onto same line as `urlscan`) — fixed
+- **Fix:** `task-spooler` is not a valid Nix identifier; corrected to `taskspooler` (the actual nixpkgs attribute name)
+- **Weather widget:** Added `pkgs/weather-utils/` with `weather-bar` (fetches current temperature from `wttr.in`, 30 min refresh) and `weather-open` (opens full 3-day forecast in foot terminal); wired into `scripts.nix`, `flake.nix`, and Noctalia bar as a `CustomButton` widget before Newsboat
 
 ### 2026-03-23 (session 2)
 - **Keyboard layout:** `Alt+Shift` → `Super+Space`; added `KeyboardLayout` widget to Noctalia bar right side

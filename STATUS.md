@@ -19,8 +19,9 @@
 | --- | --- |
 | Display manager | GDM |
 | Desktop (fallback) | GNOME |
-| Wayland compositor | Niri |
+| Wayland compositor | Niri (default) + MangoWC (mango) — switchable at GDM |
 | Status bar | Noctalia Shell |
+| Wallpaper | `wallhaven_eo2p3w.jpg` (all sessions via `~/.local/share/wallpapers/`) |
 | Audio | PipeWire |
 | Bluetooth | enabled (blueman) |
 | Keyring | gnome-keyring-daemon (PAM auto-unlock at GDM) |
@@ -103,6 +104,14 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ---
 
 ## Changelog
+
+### 2026-03-24 (session 7)
+- **MangoWC session:** Added `modules/nixos/mangowc.nix` (system, registers `mango` session with GDM) + `home/rms/modules/mangowc.nix` (user config + autostart); keybindings mirror Niri (Super+Return, Super+H/L/J/K, Super+1-5, etc.); Noctalia Shell + mako + swaybg + swayidle started via autostart.sh; accessible via GDM gear icon → "mango"
+- **Wallpaper:** All sessions (Niri, MangoWC, GNOME) now use `wallhaven_eo2p3w.jpg` copied via `home.file` to `~/.local/share/wallpapers/`; GNOME wallpaper set via dconf.settings; MangoWC autostart uses the same path
+- **Clock widget:** Noctalia bar clock format updated to `d MMM yy, ddd, hh:mm AP` → "24 Mar 26, Tue, 08:00 AM"
+- **Weather widget fix:** weather-bar script now uses `curl -sG --data-urlencode "format=%c %t"` to correctly URL-encode the wttr.in format codes (old `%c%20%t` was decoded as garbage by the server); removed `-f` flag
+- **Guide:** Created `guides/mangowc.md` with full keybind reference, layout list, session differences; linked from README
+- **nixos-config-v2:** New standalone folder at repo root with greetd+tuigreet login manager, no GDM/GNOME, wlr+gtk portals, wlopm for generic monitor power-off; new modules: `filesystems.nix` (NTFS/exFAT, udisks2, gvfs, Thunar, dconf), `gtk.nix` (adw-gtk3-dark theme), `clipboard.nix` (cliphist systemd service, Super+V picker), `filemanager.nix` (Nautilus, Thunar, rclone, KeePassXC, udiskie); polkit-gnome spawned from compositor startup
 
 ### 2026-03-23 (session 4)
 - **Fix:** `switch-keyboard-layout` is not a valid niri action name; corrected to `switch-layout "next"` — niri config was failing to parse, causing the status bar and wallpaper not to load; confirmed valid with `niri validate`

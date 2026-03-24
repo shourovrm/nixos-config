@@ -63,6 +63,26 @@
     ];
   };
 
+  # ── Wallpaper ───────────────────────────────────────────────────────────
+  # Copy wallhaven wallpaper from the repo into a stable user path so both
+  # Niri (swaybg), MangoWC (autostart) and GNOME (dconf) can reference it
+  # without depending on the nixos-config directory being at a fixed location.
+  home.file.".local/share/wallpapers/wallhaven_eo2p3w.jpg".source =
+    ../../../wallhaven_eo2p3w.jpg;
+
+  # GNOME wallpaper (dconf/GSettings — only used in the GNOME fallback session)
+  dconf.settings = {
+    "org/gnome/desktop/background" = {
+      picture-uri      = "file:///home/rms/.local/share/wallpapers/wallhaven_eo2p3w.jpg";
+      picture-uri-dark = "file:///home/rms/.local/share/wallpapers/wallhaven_eo2p3w.jpg";
+      picture-options  = "zoom";
+    };
+    "org/gnome/desktop/screensaver" = {
+      picture-uri     = "file:///home/rms/.local/share/wallpapers/wallhaven_eo2p3w.jpg";
+      picture-options = "zoom";
+    };
+  };
+
   # ── Secret service (keyring) ─────────────────────────────────────────────
   # gnome-keyring-daemon implements org.freedesktop.Secret.Service.
   # It is a small daemon (~3 MB RAM) — NOT gnome-shell or any GNOME desktop.
@@ -224,6 +244,6 @@
     // ── Startup ───────────────────────────────────────────────────────────
     spawn-at-startup "noctalia-shell"
     // Put a wallpaper at ~/Pictures/wallpaper.jpg or change this path:
-    spawn-at-startup "swaybg" "-i" "/home/rms/Pictures/wallpaper.jpg" "-m" "fill"
+    spawn-at-startup "swaybg" "-i" "/home/rms/.local/share/wallpapers/wallhaven_eo2p3w.jpg" "-m" "fill"
   '';
 }

@@ -48,8 +48,11 @@
             { id = "Battery"; alwaysShowPercentage = true; warningThreshold = 20; }
             {
               id                = "Clock";
-              formatHorizontal  = "HH:mm";
-              formatVertical    = "HH mm";
+              # Format: "24 Mar 26, Tue, 08:00 AM"
+              # Qt tokens: d=day, MMM=short month, yy=2-digit year,
+              # ddd=short weekday, hh=12h hour, mm=minute, AP=AM/PM
+              formatHorizontal  = "d MMM yy, ddd, hh:mm AP";
+              formatVertical    = "hh:mm\nAP";
               useMonospacedFont = true;
               usePrimaryColor   = true;
             }

@@ -13,6 +13,7 @@
     ./modules/neovim.nix
     ./modules/newsboat.nix  # Newsboat RSS reader
     ./modules/niri.nix
+    ./modules/mangowc.nix
     ./modules/noctalia.nix
   ];
 

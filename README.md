@@ -25,6 +25,7 @@ Detailed documentation lives in the [`guides/`](guides/) folder:
 | [newsboat.md](guides/newsboat.md) | Newsboat RSS reader, link macros, download queue |
 | [latex.md](guides/latex.md) | LaTeX with MiKTeX + VSCode LaTeX Workshop |
 | [distrobox.md](guides/distrobox.md) | Running other distros with Distrobox + Podman |
+| [mangowc.md](guides/mangowc.md) | MangoWC (mango) Wayland compositor — keybindings, layouts, config |
 
 ## Layout
 
@@ -41,7 +42,8 @@ nixos-config/
 │   ├── neovim.md
 │   ├── newsboat.md
 │   ├── latex.md
-│   └── distrobox.md
+│   ├── distrobox.md
+│   └── mangowc.md
 ├── pkgs/                                  # Custom Nix packages (callPackage)
 │   ├── fuzzel-handler/                    # fuzzel --dmenu URL/file handler
 │   ├── link-handler/                      # Smart URL dispatcher

@@ -4,7 +4,7 @@
 
 ---
 
-## Current configuration — 2026-03-23
+## Current configuration — 2026-03-24
 
 ### Host
 | Field | Value |
@@ -104,6 +104,11 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ---
 
 ## Changelog
+
+### 2026-03-24 (session 9)
+- **GDM / MangoWC:** confirmed `mango.desktop` is present in the activated system profile after rebuild and appears to GDM; `mangowc` stays linked in the system profile so the session and binary remain visible
+- **Wayland / graphics:** verified the session is `Type=wayland`; the launcher animation artifact was traced to Noctalia's own wallpaper transition system rather than a compositor failure
+- **Noctalia wallpaper:** disabled Noctalia's wallpaper layer and transitions (`enabled = false`, `transitionType = [ "none" ]`) so the compositor-owned `wallhaven_eo2p3w.jpg` remains visible in Niri and MangoWC
 
 ### 2026-03-24 (session 8)
 - **MangoWC GDM fix:** `services.displayManager.sessionPackages = [ pkgs.mangowc ]` is correct; session appears once system is rebuilt (`sudo nixos-rebuild switch ...`); `mango.desktop` + `niri.desktop` will both be present in `/run/current-system/sw/share/wayland-sessions/`

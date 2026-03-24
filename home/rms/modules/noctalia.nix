@@ -83,6 +83,17 @@
 
       colorSchemes.predefinedScheme = "Monochrome";
 
+      # Let the compositor-owned wallpaper (swaybg in niri/mango) remain the
+      # only desktop background. Noctalia's wallpaper service adds its own
+      # fullscreen background layer and transition shaders, including the
+      # stripes effect that looks like CRT scan lines on launcher/opening.
+      wallpaper = {
+        enabled = false;
+        overviewEnabled = false;
+        transitionType = [ "none" ];
+        skipStartupTransition = true;
+      };
+
       general = {
         avatarImage = "/home/rms/.face";
         radiusRatio = 0.2;

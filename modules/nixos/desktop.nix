@@ -1,13 +1,28 @@
 # modules/nixos/desktop.nix
-# Display manager (GDM) and fallback desktop (GNOME).
-# GDM is the login screen. GNOME stays as a fallback — pick Niri at login via
-# the gear icon. Having GNOME also provides gnome-keyring and polkit agent.
-{ ... }:
+# Display manager (GDM), fallback desktop (GNOME), and Wayland session entry
+# points. GDM is the login screen; GNOME remains available as fallback.
+{ pkgs, ... }:
 
 {
   services.xserver.enable              = true;  # X server needed even for Wayland GDM
   services.displayManager.gdm.enable   = true;  # GNOME Display Manager (login screen)
   services.desktopManager.gnome.enable = true;  # full GNOME session available as fallback
+
+  programs.niri.enable = true;
+  services.displayManager.sessionPackages = [ pkgs.mangowc ];
+  environment.systemPackages = [ pkgs.mangowc ];
+
+  security.polkit.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config.niri = { default = [ "gnome" "gtk" ]; };
+    config.mango = { default = [ "wlr" "gtk" ]; };
+  };
 
   services.xserver.xkb = {
     layout  = "us,bd";      # us = English, bd = Bangla

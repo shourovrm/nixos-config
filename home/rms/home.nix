@@ -12,8 +12,7 @@
     ./home-modules/foot.nix      # foot terminal — Catppuccin Mocha theme, JetBrains Mono
     ./home-modules/neovim.nix
     ./home-modules/newsboat.nix  # Newsboat RSS reader
-    ./home-modules/niri.nix
-    ./home-modules/mangowc.nix
+    ./home-modules/wayland.nix   # Niri + MangoWC user config, tools, screenshots
     ./home-modules/noctalia.nix
   ];
 

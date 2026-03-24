@@ -8,7 +8,7 @@ Nixpkgs package: `mangowc` (v0.10.5) | Upstream: [mangowm/mango](https://github.
 
 ## Selecting the session
 
-At the GDM login screen, click the **gear icon** (⚙) next to the Sign In button and choose **mango**. The session will start with Noctalia Shell, mako, swaybg, and swayidle running automatically.
+At the GDM login screen, click the **gear icon** (⚙) next to the Sign In button and choose **mango**. The session will start with Noctalia Shell, mako, and swayidle running automatically.
 
 ---
 
@@ -26,7 +26,7 @@ Keybindings closely mirror the Niri session so switching between them is easy.
 | `Super + B` | Toggle control center |
 | `Super + Ctrl + L` | Lock screen (swaylock) |
 | `Super + Shift + E` | Quit mango |
-| `Super + Ctrl + R` | Hot-reload config (no restart) |
+| `Super + Shift + R` | Hot-reload config (no restart) |
 
 ### Window management
 
@@ -63,8 +63,9 @@ MangoWC uses **tags** rather than workspaces.  Tags 1–5 are configured.
 
 | Key | Action |
 | --- | --- |
-| `Print` | Interactive region → saved to `~/Pictures/` |
-| `Super + S` | Full-screen → saved to `~/Pictures/` |
+| `Print` | Interactive region → saved to `~/Pictures/Screenshots/` |
+| `Super + S` | Full-screen → saved to `~/Pictures/Screenshots/` |
+| `Alt + Print` | Focused window → saved to `~/Pictures/Screenshots/` |
 
 ### Media / hardware keys
 
@@ -95,9 +96,9 @@ MangoWC uses **tags** rather than workspaces.  Tags 1–5 are configured.
 | `~/.config/mango/config.conf` | Main compositor config (effects, layout, keybindings) |
 | `~/.config/mango/autostart.sh` | Session startup script (bar, wallpaper, idle) |
 
-Both are managed by Home Manager (`home/rms/home-modules/mangowc.nix`).  Edit that Nix file and run `nixswitch` to apply changes — no manual file editing needed.
+Both are managed by Home Manager (`home/rms/home-modules/wayland.nix`). Edit that Nix file and run `nixswitch` to apply changes — no manual file editing needed.
 
-To **hot-reload** keybindings only, press `Super + Ctrl + R` inside the mango session.
+To **hot-reload** keybindings only, press `Super + Shift + R` inside the mango session.
 
 ---
 
@@ -144,8 +145,8 @@ Identical to the Niri session:
 ## Nix module structure
 
 ```text
-modules/nixos/mangowc.nix          # system: session registration, XDG portals
-home/rms/home-modules/mangowc.nix   # user:   config.conf + autostart.sh
+modules/nixos/desktop.nix          # system: GDM/GNOME + Niri/MangoWC session wiring
+home/rms/home-modules/wayland.nix  # user: Niri KDL + Mango config.conf/autostart.sh
 ```
 
-The NixOS module sets `services.displayManager.sessionPackages = [ pkgs.mangowc ]` so GDM discovers the session. The HM module writes both config files and sets `home.packages = [ pkgs.mangowc ]`.
+The system module registers both Wayland sessions and the required XDG portal routing. The Home Manager module owns the shared session tools plus the Niri and MangoWC config files.

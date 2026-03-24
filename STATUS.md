@@ -4,7 +4,7 @@
 
 ---
 
-## Current configuration — 2026-03-24
+## Current configuration — 2026-03-25
 
 ### Host
 | Field | Value |
@@ -46,8 +46,8 @@
 ### VSCode (Home Manager — `vscode.nix`)
 Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
 
-### Niri session tools (in `home/rms/home-modules/niri.nix`)
-`fuzzel` `foot` `swaylock` `swaybg` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl`
+### Wayland session tools (in `home/rms/home-modules/wayland.nix`)
+`fuzzel` `foot` `swaylock` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl` `wlopm`
 
 ### Active Home Manager modules
 | Module | Purpose |
@@ -60,7 +60,7 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | `foot.nix` | foot terminal — Catppuccin Mocha, JetBrains Mono 10pt, 5% transparency |
 | `neovim.nix` | Neovim + LSP servers (clangd, pyright, black, gcc) + wl-clipboard + symlink `home/rms/nvim/` → `~/.config/nvim/` |
 | `newsboat.nix` | Newsboat RSS reader — vim keybinds, macros, Catppuccin colours, 22 feeds |
-| `niri.nix` | Niri KDL config + session tools + power management |
+| `wayland.nix` | Shared Niri + MangoWC config, session tools, wallpaper, screenshots |
 | `noctalia.nix` | Noctalia bar (widgets, colours, location) |
 
 ### Noctalia bar widgets
@@ -104,6 +104,8 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ## Changelog
 
 ### 2026-03-25
+- **Wayland module cleanup:** collapsed the Niri and MangoWC Home Manager config into `home/rms/home-modules/wayland.nix`, and folded the system-side session/portal wiring into `modules/nixos/desktop.nix`; removed the extra per-compositor module files
+- **MangoWC screenshots:** switched MangoWC to the same screenshot keys and save path as Niri (`~/Pictures/Screenshots/`), including a focused-window capture on `Alt+Print` via MangoWC's `mmsg` IPC geometry output
 - **Home Manager layout:** verified the `home/rms/home-modules/` rename is wired correctly; `home/rms/home.nix` imports now point only at `./home-modules/*` and the docs/status paths match
 - **Repository cleanup:** removed the tracked `er` file; it was an old captured dump of an external `dmenuhandler` script and is not used by this config
 - **v2 sync:** mirrored the same `home/rms/home-modules/` rename into `nixos-config-v2/` and updated its imports, docs, and status references

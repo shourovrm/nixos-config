@@ -11,7 +11,7 @@ GNOME remains available the same way.
 
 | Action | Keys |
 | --- | --- |
-| Switch English ↔ Bangla (Probhat) | `Alt + Shift` |
+| Switch English ↔ Bangla (Probhat) | `Super + Space` |
 
 ---
 
@@ -20,7 +20,7 @@ GNOME remains available the same way.
 | Action | Keys |
 | --- | --- |
 | Open terminal (foot) | `Super + T` |
-| Open app launcher (fuzzel) | `Super + D` |
+| Toggle Noctalia launcher | `Super + D` |
 | Lock screen | `Super + Ctrl + L` |
 
 ---
@@ -66,9 +66,9 @@ Screenshots are saved to `~/Pictures/Screenshots/` by niri's built-in screenshot
 
 | Action | Keys |
 | --- | --- |
-| Toggle noctalia launcher | `Super + Space` |
+| Toggle Noctalia launcher | `Super + D` |
 | Toggle notification panel | `Super + N` |
-| Toggle control centre | `Super + B` |
+| Toggle control center | `Super + B` |
 | Toggle overview | `Super + O` |
 
 ### Bar widgets (right side)
@@ -114,7 +114,7 @@ Most apps using `libsecret` work automatically. Chromium-based and Electron apps
 | App | How it's handled |
 | --- | --- |
 | VS Code | `--password-store=gnome-libsecret` in its override in `packages.nix` |
-| Chromium / Chrome | `~/.config/chromium-flags.conf` written by Home Manager in `niri.nix` |
+| Chromium / Chrome | `~/.config/chromium-flags.conf` written by Home Manager in `wayland.nix` |
 | Other Electron apps | Add a `.config/<appname>-flags.conf` with the two lines below |
 
 ```

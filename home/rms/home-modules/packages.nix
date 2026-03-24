@@ -1,4 +1,4 @@
-# home/rms/modules/packages.nix
+# home/rms/home-modules/packages.nix
 # User-level packages that only need an install (no rich Home Manager config).
 # Anything needing >~5 lines of config gets its own module file instead.
 # VSCode lives in vscode.nix; Neovim lives in neovim.nix.
@@ -28,7 +28,7 @@
     distrobox    # run any Linux distro as a rootless container; integrates with host
     podman       # OCI container runtime (backend for distrobox; daemonless)
     # ── News / media consumption (newsboat ecosystem) ────────────────────
-    newsboat     # TUI RSS/Atom reader; config in home/rms/modules/newsboat.nix
+    newsboat     # TUI RSS/Atom reader; config in home/rms/home-modules/newsboat.nix
     yt-dlp       # YouTube / streaming site downloader (queued by qndl)
     links2       # text-mode web browser for reading articles in terminal
     taskspooler  # tsp: serialise background jobs (used by qndl for downloads)

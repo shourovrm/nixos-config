@@ -1,4 +1,4 @@
-# home/rms/modules/niri.nix
+# home/rms/home-modules/niri.nix
 # Niri compositor user configuration and helper tools.
 { pkgs, ... }:
 

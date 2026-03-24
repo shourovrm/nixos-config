@@ -65,7 +65,7 @@ nixos-config/
 └── home/
     └── rms/
         ├── home.nix                       # Entry point — imports only
-        └── modules/                       # User-level modules
+        └── home-modules/                  # User-level modules
             ├── packages.nix               # All user packages
             ├── git.nix
             ├── bash.nix

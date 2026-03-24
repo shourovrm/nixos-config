@@ -370,7 +370,7 @@ cat ~/.ssh/id_ed25519.pub   # add to GitHub / servers
 ### Git identity (first time on new machine)
 
 The `git.nix` module sets a global email/name.  Edit
-`home/rms/modules/git.nix` if defaults need changing, then rebuild.
+`home/rms/home-modules/git.nix` if defaults need changing, then rebuild.
 
 ### Wallpaper
 

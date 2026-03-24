@@ -1,4 +1,4 @@
-# home/rms/modules/noctalia.nix
+# home/rms/home-modules/noctalia.nix
 # Noctalia shell — declarative config via its Home Manager module.
 { config, inputs, pkgs, ... }:
 

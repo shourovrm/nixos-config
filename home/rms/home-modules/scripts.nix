@@ -1,4 +1,4 @@
-# home/rms/modules/scripts.nix
+# home/rms/home-modules/scripts.nix
 # Wire all custom packages from pkgs/ into the user environment.
 #
 # Each package under pkgs/ is a standalone derivation with its own default.nix.

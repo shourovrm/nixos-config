@@ -1,4 +1,4 @@
-# home/rms/modules/mangowc.nix
+# home/rms/home-modules/mangowc.nix
 # MangoWC (mango) compositor — user configuration and autostart.
 # Config: ~/.config/mango/config.conf
 # Autostart: ~/.config/mango/autostart.sh
@@ -171,8 +171,8 @@
 
     # Window management
     bind=SUPER,Q,killclient
-    bind=SUPER+SHIFT,F,togglefullscreen
-    bind=SUPER,F,togglemaximizescreen
+    bind=SUPER,F,togglefullscreen
+    # bind=SUPER,F,togglemaximizescreen
     bind=SUPER,O,toggleoverview
 
     # Keyboard layout cycling (Super+Space — matches Niri)
@@ -216,7 +216,7 @@
     mousebind=SUPER,btn_right,moveresize,curresize
 
     # Reload config hot (no compositor restart needed)
-    bind=SUPER+CTRL,R,reload_config
+    bind=SUPER+SHIFT,R,reload_config
 
     # Quit (matches Niri Super+Shift+E)
     bind=SUPER+SHIFT,E,quit

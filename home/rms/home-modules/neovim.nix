@@ -1,4 +1,4 @@
-# home/rms/modules/neovim.nix
+# home/rms/home-modules/neovim.nix
 { pkgs, ... }:
 
 {

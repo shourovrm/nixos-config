@@ -1,4 +1,4 @@
-# home/rms/modules/git.nix
+# home/rms/home-modules/git.nix
 # Git identity and global settings managed by Home Manager.
 { ... }:
 

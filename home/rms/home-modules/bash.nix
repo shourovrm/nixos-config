@@ -1,4 +1,4 @@
-# home/rms/modules/bash.nix
+# home/rms/home-modules/bash.nix
 # Bash shell: aliases and extra bashrc snippets managed by Home Manager.
 { ... }:
 

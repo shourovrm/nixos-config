@@ -54,7 +54,7 @@ nix flake update nixpkgs
 | Bootloader, kernel, filesystems | `hosts/rms-laptop/hardware-configuration.nix` |
 | Machine identity, user account | `hosts/rms-laptop/configuration.nix` |
 | Locale, desktop, audio, Nix GC | `modules/nixos/*.nix` |
-| User apps, shell, git, editors | `home/rms/modules/*.nix` |
+| User apps, shell, git, editors | `home/rms/home-modules/*.nix` |
 
 ---
 
@@ -63,7 +63,7 @@ nix flake update nixpkgs
 **Rule of thumb:** one-line installs → add to an existing file; richer config → new dedicated file.
 
 ### User package (no config needed)
-Add to `home/rms/modules/packages.nix`:
+Add to `home/rms/home-modules/packages.nix`:
 ```nix
 home.packages = with pkgs; [
   my-new-package
@@ -79,7 +79,7 @@ If it grows beyond ~20–30 lines, create a new file and import it in `home/rms/
 ```nix
 imports = [
   ...
-  ./modules/my-program.nix
+  ./home-modules/my-program.nix
 ];
 ```
 
@@ -102,7 +102,7 @@ Add a new output in `flake.nix`:
 nixosConfigurations.rms-desktop = nixpkgs.lib.nixosSystem { ... };
 ```
 
-All `modules/nixos/` and `home/rms/modules/` files reuse unchanged.
+All `modules/nixos/` and `home/rms/home-modules/` files reuse unchanged.
 
 ---
 

@@ -1,4 +1,4 @@
-# home/rms/modules/vscode.nix
+# home/rms/home-modules/vscode.nix
 # VSCode with Wayland flags + LaTeX Workshop extension.
 { pkgs, ... }:
 

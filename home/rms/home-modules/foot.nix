@@ -1,4 +1,4 @@
-# home/rms/modules/foot.nix
+# home/rms/home-modules/foot.nix
 # foot terminal emulator configuration via Home Manager.
 #
 # Theme: Catppuccin Mocha (dark purple-tinted dark theme), matching the overall

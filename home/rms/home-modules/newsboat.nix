@@ -1,4 +1,4 @@
-# home/rms/modules/newsboat.nix
+# home/rms/home-modules/newsboat.nix
 # Newsboat RSS/Atom reader configuration via Home Manager.
 #
 # Config highlights:

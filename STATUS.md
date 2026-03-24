@@ -46,7 +46,7 @@
 ### VSCode (Home Manager — `vscode.nix`)
 Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
 
-### Niri session tools (in `home/rms/modules/niri.nix`)
+### Niri session tools (in `home/rms/home-modules/niri.nix`)
 `fuzzel` `foot` `swaylock` `swaybg` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl`
 
 ### Active Home Manager modules
@@ -101,9 +101,12 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | --- | --- | --- |
 | general (default) | `~/.venv/general` | Everyday packages; auto-activated in bash |
 
----
-
 ## Changelog
+
+### 2026-03-25
+- **Home Manager layout:** verified the `home/rms/home-modules/` rename is wired correctly; `home/rms/home.nix` imports now point only at `./home-modules/*` and the docs/status paths match
+- **Repository cleanup:** removed the tracked `er` file; it was an old captured dump of an external `dmenuhandler` script and is not used by this config
+- **v2 sync:** mirrored the same `home/rms/home-modules/` rename into `nixos-config-v2/` and updated its imports, docs, and status references
 
 ### 2026-03-24 (session 11)
 - **MangoWC idle / power:** updated MangoWC swayidle to lock after 5 min, turn displays off after 10 min via `wlopm`, lock before sleep, and suspend only after 3 h on battery; on AC it never auto-suspends
@@ -125,7 +128,7 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 - **Install guide:** Rewrote `guides/nixos-install.md` from scratch — now covers minimal ISO boot, wired/Wi-Fi network setup, full-disk partitioning (GPT + UEFI), dual-boot alongside Windows (shrink in Windows, add Linux partition, reuse EFI partition), hardware-config generation, Home Manager first activation, post-install checklist (SSH, Python venv, rclone, session selection), rebuild commands, and troubleshooting
 
 ### 2026-03-24 (session 7)
-- **MangoWC session:** Added `modules/nixos/mangowc.nix` (system, registers `mango` session with GDM) + `home/rms/modules/mangowc.nix` (user config + autostart); keybindings mirror Niri (Super+Return, Super+H/L/J/K, Super+1-5, etc.); Noctalia Shell + mako + swaybg + swayidle started via autostart.sh; accessible via GDM gear icon → "mango"
+- **MangoWC session:** Added `modules/nixos/mangowc.nix` (system, registers `mango` session with GDM) + `home/rms/home-modules/mangowc.nix` (user config + autostart); keybindings mirror Niri (Super+Return, Super+H/L/J/K, Super+1-5, etc.); Noctalia Shell + mako + swaybg + swayidle started via autostart.sh; accessible via GDM gear icon → "mango"
 - **Wallpaper:** All sessions (Niri, MangoWC, GNOME) now use `wallhaven_eo2p3w.jpg` copied via `home.file` to `~/.local/share/wallpapers/`; GNOME wallpaper set via dconf.settings; MangoWC autostart uses the same path
 - **Clock widget:** Noctalia bar clock format updated to `d MMM yy, ddd, hh:mm AP` → "24 Mar 26, Tue, 08:00 AM"
 - **Weather widget fix:** weather-bar script now uses `curl -sG --data-urlencode "format=%c %t"` to correctly URL-encode the wttr.in format codes (old `%c%20%t` was decoded as garbage by the server); removed `-f` flag

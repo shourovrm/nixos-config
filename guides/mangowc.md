@@ -95,7 +95,7 @@ MangoWC uses **tags** rather than workspaces.  Tags 1–5 are configured.
 | `~/.config/mango/config.conf` | Main compositor config (effects, layout, keybindings) |
 | `~/.config/mango/autostart.sh` | Session startup script (bar, wallpaper, idle) |
 
-Both are managed by Home Manager (`home/rms/modules/mangowc.nix`).  Edit that Nix file and run `nixswitch` to apply changes — no manual file editing needed.
+Both are managed by Home Manager (`home/rms/home-modules/mangowc.nix`).  Edit that Nix file and run `nixswitch` to apply changes — no manual file editing needed.
 
 To **hot-reload** keybindings only, press `Super + Ctrl + R` inside the mango session.
 
@@ -145,7 +145,7 @@ Identical to the Niri session:
 
 ```text
 modules/nixos/mangowc.nix          # system: session registration, XDG portals
-home/rms/modules/mangowc.nix       # user:   config.conf + autostart.sh
+home/rms/home-modules/mangowc.nix   # user:   config.conf + autostart.sh
 ```
 
 The NixOS module sets `services.displayManager.sessionPackages = [ pkgs.mangowc ]` so GDM discovers the session. The HM module writes both config files and sets `home.packages = [ pkgs.mangowc ]`.

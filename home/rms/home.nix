@@ -4,17 +4,17 @@
 
 {
   imports = [
-    ./modules/packages.nix
-    ./modules/scripts.nix   # custom scripts from pkgs/ (fuzzel-handler, link-handler, qndl, …)
-    ./modules/vscode.nix
-    ./modules/git.nix
-    ./modules/bash.nix
-    ./modules/foot.nix      # foot terminal — Catppuccin Mocha theme, JetBrains Mono
-    ./modules/neovim.nix
-    ./modules/newsboat.nix  # Newsboat RSS reader
-    ./modules/niri.nix
-    ./modules/mangowc.nix
-    ./modules/noctalia.nix
+    ./home-modules/packages.nix
+    ./home-modules/scripts.nix   # custom scripts from pkgs/ (fuzzel-handler, link-handler, qndl, …)
+    ./home-modules/vscode.nix
+    ./home-modules/git.nix
+    ./home-modules/bash.nix
+    ./home-modules/foot.nix      # foot terminal — Catppuccin Mocha theme, JetBrains Mono
+    ./home-modules/neovim.nix
+    ./home-modules/newsboat.nix  # Newsboat RSS reader
+    ./home-modules/niri.nix
+    ./home-modules/mangowc.nix
+    ./home-modules/noctalia.nix
   ];
 
   home.username      = "rms";

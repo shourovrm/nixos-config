@@ -1,7 +1,7 @@
 # Newsboat Guide
 
 Newsboat is a fast, Vim-keyed TUI RSS/Atom reader.  In this setup it is managed
-by Home Manager (`home/rms/modules/newsboat.nix`) and integrates with several
+by Home Manager (`home/rms/home-modules/newsboat.nix`) and integrates with several
 custom scripts for opening links.
 
 ---
@@ -79,7 +79,7 @@ newsboat.  To control the download destination, set `$TSP_SLOTS` and invoke
 
 ## Adding / removing feeds
 
-Edit `home/rms/modules/newsboat.nix` under the `home.file.".config/newsboat/urls"` block.
+Edit `home/rms/home-modules/newsboat.nix` under the `home.file.".config/newsboat/urls"` block.
 
 Format per line:
 ```
@@ -108,7 +108,7 @@ newsboat -x print-unread   # print unread count to stdout
 
 | File | Path |
 | --- | --- |
-| Nix module | `home/rms/modules/newsboat.nix` |
+| Nix module | `home/rms/home-modules/newsboat.nix` |
 | Config file (generated) | `~/.config/newsboat/config` |
 | URLs file (generated) | `~/.config/newsboat/urls` |
 | Cache database | `~/.local/share/newsboat/cache.db` |
@@ -118,7 +118,7 @@ newsboat -x print-unread   # print unread count to stdout
 
 ## Noctalia bar widget
 
-The `CustomButton` widget in the Noctalia bar (configured in `home/rms/modules/noctalia.nix`) shows the unread article count by polling `newsboat-count` every 5 minutes.  Click it to open Newsboat in a foot terminal.
+The `CustomButton` widget in the Noctalia bar (configured in `home/rms/home-modules/noctalia.nix`) shows the unread article count by polling `newsboat-count` every 5 minutes.  Click it to open Newsboat in a foot terminal.
 
 | Widget behaviour | Detail |
 | --- | --- |

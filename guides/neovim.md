@@ -204,7 +204,7 @@ Press `<leader>?` at any time to see a popup of all keybindings.
 
 ## Adding a new language
 
-1. **LSP server** — add to `programs.neovim.extraPackages` in `home/rms/modules/neovim.nix`, then add `lspconfig.<server>.setup({})` in `home/rms/nvim/lua/rms/plugins/lsp.lua`.
+1. **LSP server** — add to `programs.neovim.extraPackages` in `home/rms/home-modules/neovim.nix`, then add `lspconfig.<server>.setup({})` in `home/rms/nvim/lua/rms/plugins/lsp.lua`.
 2. **Tree-sitter parser** — add the language to `ensure_installed` in `home/rms/nvim/lua/rms/plugins/treesitter.lua`.
 3. **Formatter** — add `{ ft = { "formatter" } }` in `home/rms/nvim/lua/rms/plugins/format.lua` and the tool to `extraPackages`.
 

@@ -46,7 +46,7 @@
     {
       # ── Custom packages (pkgs/ directory) ───────────────────────────────────
       # Each entry can be built with: nix build .#<name>
-      # They are also consumed by home/rms/modules/scripts.nix via callPackage.
+      # They are also consumed by home/rms/home-modules/scripts.nix via callPackage.
       packages.${system} = {
         fuzzel-handler  = pkgs.callPackage ./pkgs/fuzzel-handler  {};
         link-handler    = pkgs.callPackage ./pkgs/link-handler    {};

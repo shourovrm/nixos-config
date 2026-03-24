@@ -9,6 +9,13 @@
   # share/wayland-sessions/ directory automatically.
   services.displayManager.sessionPackages = [ pkgs.mangowc ];
 
+  # Also link mangowc into the system profile explicitly.  In this setup the
+  # generated desktops derivation contains mango.desktop, but the activated
+  # /run/current-system/sw/share/wayland-sessions directory was only exposing
+  # entries from the system path.  Keeping the package in systemPackages makes
+  # the session file and the mango binary visible to GDM reliably.
+  environment.systemPackages = [ pkgs.mangowc ];
+
   # PolKit — already enabled by niri.nix but harmless to state here too.
   security.polkit.enable = true;
 

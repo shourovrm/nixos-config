@@ -105,6 +105,10 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 
 ## Changelog
 
+### 2026-03-24 (session 11)
+- **MangoWC idle / power:** updated MangoWC swayidle to lock after 5 min, turn displays off after 10 min via `wlopm`, lock before sleep, and suspend only after 3 h on battery; on AC it never auto-suspends
+- **Docs / v2 sync:** mirrored the recent MangoWC + Noctalia wallpaper changes into `nixos-config-v2/` (no commit there), updated its `STATUS.md`, and rewrote its install guide to cover the greetd + tuigreet setup path
+
 ### 2026-03-24 (session 10)
 - **Wallpaper engine:** switched Niri and MangoWC from `swaybg` to Noctalia's built-in wallpaper layer; removed `swaybg` from both session startup paths to avoid double background layers
 - **Noctalia wallpaper config:** enabled Noctalia wallpaper declaratively, pointed it at `~/.local/share/wallpapers`, disabled transitions (`transitionType = [ "none" ]`), and seeded the wallpaper cache so `wallhaven_eo2p3w.jpg` is used immediately instead of the bundled Noctalia default

@@ -18,6 +18,7 @@
   # already provided by niri.nix which is also imported for this host.
   home.packages = with pkgs; [
     mangowc       # the compositor itself (binary: mango)
+    wlopm         # wlroots output power manager (display off/on for MangoWC)
   ];
 
   # ── MangoWC config ────────────────────────────────────────────────────────
@@ -240,9 +241,12 @@
       # Notification daemon (configured via niri.nix services.mako)
       mako &
 
-      # Idle management: lock at 5 min idle; suspend on battery at 3 h
+      # Idle management: lock at 5 min, turn displays off at 10 min, suspend
+      # only on battery at 3 h. Lock/display-off happen on both AC and battery.
       swayidle -w \
         timeout 300  "swaylock -f -c 1a1a2e" \
+        timeout 600  "wlopm --off '*'" \
+        resume       "wlopm --on '*'" \
         timeout 10800 \
           "grep -rq Discharging /sys/class/power_supply/ 2>/dev/null \
            && /run/current-system/sw/bin/systemctl suspend || true" \

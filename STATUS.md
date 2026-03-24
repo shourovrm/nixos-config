@@ -105,6 +105,11 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 
 ## Changelog
 
+### 2026-03-24 (session 10)
+- **Wallpaper engine:** switched Niri and MangoWC from `swaybg` to Noctalia's built-in wallpaper layer; removed `swaybg` from both session startup paths to avoid double background layers
+- **Noctalia wallpaper config:** enabled Noctalia wallpaper declaratively, pointed it at `~/.local/share/wallpapers`, disabled transitions (`transitionType = [ "none" ]`), and seeded the wallpaper cache so `wallhaven_eo2p3w.jpg` is used immediately instead of the bundled Noctalia default
+- **Runtime check:** applied the config with `nixos-rebuild switch`, confirmed the active MangoWC session is Wayland, and removed the stale live `swaybg` process so MangoWC now runs with a single background layer (`mango` + `quickshell`, no `swaybg`)
+
 ### 2026-03-24 (session 9)
 - **GDM / MangoWC:** confirmed `mango.desktop` is present in the activated system profile after rebuild and appears to GDM; `mangowc` stays linked in the system profile so the session and binary remain visible
 - **Wayland / graphics:** verified the session is `Type=wayland`; the launcher animation artifact was traced to Noctalia's own wallpaper transition system rather than a compositor failure

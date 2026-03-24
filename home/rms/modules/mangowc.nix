@@ -234,9 +234,6 @@
       # MangoWC autostart — session tools launched when mango starts.
       export PATH="/run/current-system/sw/bin:/home/rms/.nix-profile/bin:$PATH"
 
-      # Wallpaper (same image used by Niri and GNOME)
-      swaybg -i "$HOME/.local/share/wallpapers/wallhaven_eo2p3w.jpg" -m fill &
-
       # Status bar
       noctalia-shell &
 

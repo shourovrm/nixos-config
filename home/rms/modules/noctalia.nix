@@ -1,6 +1,6 @@
 # home/rms/modules/noctalia.nix
 # Noctalia shell — declarative config via its Home Manager module.
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports = [ inputs.noctalia.homeModules.default ];
@@ -83,13 +83,16 @@
 
       colorSchemes.predefinedScheme = "Monochrome";
 
-      # Let the compositor-owned wallpaper (swaybg in niri/mango) remain the
-      # only desktop background. Noctalia's wallpaper service adds its own
-      # fullscreen background layer and transition shaders, including the
-      # stripes effect that looks like CRT scan lines on launcher/opening.
+      # Use Noctalia's own wallpaper engine instead of running a second
+      # background layer via swaybg. This avoids compositor-layer conflicts and
+      # keeps the overview integration working in niri.
       wallpaper = {
-        enabled = false;
-        overviewEnabled = false;
+        enabled = true;
+        directory = "${config.home.homeDirectory}/.local/share/wallpapers";
+        fillMode = "crop";
+        automationEnabled = false;
+        setWallpaperOnAllMonitors = true;
+        overviewEnabled = true;
         transitionType = [ "none" ];
         skipStartupTransition = true;
       };
@@ -104,5 +107,13 @@
         name           = "Dhaka, Bangladesh";
       };
     };
+  };
+
+  # Seed Noctalia's wallpaper cache so first start uses the managed wallhaven
+  # image rather than falling back to Noctalia's bundled default wallpaper.
+  home.file.".cache/noctalia/wallpapers.json".text = builtins.toJSON {
+    defaultWallpaper = "${config.home.homeDirectory}/.local/share/wallpapers/wallhaven_eo2p3w.jpg";
+    wallpapers = { };
+    usedRandomWallpapers = { };
   };
 }

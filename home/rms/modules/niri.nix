@@ -243,7 +243,5 @@
 
     // ── Startup ───────────────────────────────────────────────────────────
     spawn-at-startup "noctalia-shell"
-    // Put a wallpaper at ~/Pictures/wallpaper.jpg or change this path:
-    spawn-at-startup "swaybg" "-i" "/home/rms/.local/share/wallpapers/wallhaven_eo2p3w.jpg" "-m" "fill"
   '';
 }

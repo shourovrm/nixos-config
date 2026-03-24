@@ -73,7 +73,7 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | --- | --- |
 | `Super+D` | Toggle Noctalia launcher |
 | `Super+Space` | Switch keyboard layout (next) |
-| `Super+Return` | Open foot terminal |
+| `Super+T` | Open foot terminal |
 | `Super+S` | Full-screen screenshot |
 | `Print` | Interactive region screenshot |
 
@@ -104,6 +104,11 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ---
 
 ## Changelog
+
+### 2026-03-24 (session 8)
+- **MangoWC GDM fix:** `services.displayManager.sessionPackages = [ pkgs.mangowc ]` is correct; session appears once system is rebuilt (`sudo nixos-rebuild switch ...`); `mango.desktop` + `niri.desktop` will both be present in `/run/current-system/sw/share/wayland-sessions/`
+- **Niri terminal keybind:** changed from `Super+Return` → `Super+T` (`Mod+T { spawn "foot"; }` in `niri.nix`)
+- **Install guide:** Rewrote `guides/nixos-install.md` from scratch — now covers minimal ISO boot, wired/Wi-Fi network setup, full-disk partitioning (GPT + UEFI), dual-boot alongside Windows (shrink in Windows, add Linux partition, reuse EFI partition), hardware-config generation, Home Manager first activation, post-install checklist (SSH, Python venv, rclone, session selection), rebuild commands, and troubleshooting
 
 ### 2026-03-24 (session 7)
 - **MangoWC session:** Added `modules/nixos/mangowc.nix` (system, registers `mango` session with GDM) + `home/rms/modules/mangowc.nix` (user config + autostart); keybindings mirror Niri (Super+Return, Super+H/L/J/K, Super+1-5, etc.); Noctalia Shell + mako + swaybg + swayidle started via autostart.sh; accessible via GDM gear icon → "mango"

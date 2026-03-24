@@ -114,7 +114,7 @@ Most apps using `libsecret` work automatically. Chromium-based and Electron apps
 | App | How it's handled |
 | --- | --- |
 | VS Code | `--password-store=gnome-libsecret` in its override in `packages.nix` |
-| Chromium / Chrome | `~/.config/chromium-flags.conf` written by Home Manager in `wayland.nix` |
+| Chromium / Chrome | `~/.config/chromium-flags.conf` written by Home Manager in `niri.nix` |
 | Other Electron apps | Add a `.config/<appname>-flags.conf` with the two lines below |
 
 ```

@@ -46,8 +46,8 @@
 ### VSCode (Home Manager — `vscode.nix`)
 Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex-workshop`)
 
-### Wayland session tools (in `home/rms/home-modules/wayland.nix`)
-`fuzzel` `foot` `swaylock` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl` `wlopm`
+### Niri session tools (in `home/rms/home-modules/niri.nix`)
+`fuzzel` `foot` `swaylock` `swayidle` `wl-clipboard` `grim` `slurp` `libnotify` `mako` `brightnessctl` `playerctl`
 
 ### Active Home Manager modules
 | Module | Purpose |
@@ -60,7 +60,8 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 | `foot.nix` | foot terminal — Catppuccin Mocha, JetBrains Mono 10pt, 5% transparency |
 | `neovim.nix` | Neovim + LSP servers (clangd, pyright, black, gcc) + wl-clipboard + symlink `home/rms/nvim/` → `~/.config/nvim/` |
 | `newsboat.nix` | Newsboat RSS reader — vim keybinds, macros, Catppuccin colours, 22 feeds |
-| `wayland.nix` | Shared Niri + MangoWC config, session tools, wallpaper, screenshots |
+| `niri.nix` | Niri KDL config + shared Wayland user services |
+| `mangowc.nix` | MangoWC config + autostart + screenshots |
 | `noctalia.nix` | Noctalia bar (widgets, colours, location) |
 
 ### Noctalia bar widgets
@@ -104,6 +105,8 @@ Wayland + gnome-libsecret flags; extensions: **LaTeX Workshop** (`james-yu.latex
 ## Changelog
 
 ### 2026-03-25
+- **Layout correction:** split the merged `home/rms/home-modules/wayland.nix` back into separate `niri.nix` and `mangowc.nix`, and moved the shared system-side session/portal wiring into `modules/nixos/wayland.nix`
+- **MangoWC screenshots:** simplified MangoWC screenshots to `grim` + `slurp` only: `Print` for region capture and `Super+S` for fullscreen, both saving under `~/Pictures/Screenshots/`
 - **Wayland module cleanup:** collapsed the Niri and MangoWC Home Manager config into `home/rms/home-modules/wayland.nix`, and folded the system-side session/portal wiring into `modules/nixos/desktop.nix`; removed the extra per-compositor module files
 - **MangoWC screenshots:** switched MangoWC to the same screenshot keys and save path as Niri (`~/Pictures/Screenshots/`), including a focused-window capture on `Alt+Print` via MangoWC's `mmsg` IPC geometry output
 - **Home Manager layout:** verified the `home/rms/home-modules/` rename is wired correctly; `home/rms/home.nix` imports now point only at `./home-modules/*` and the docs/status paths match

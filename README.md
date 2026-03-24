@@ -57,7 +57,8 @@ nixos-config/
 ├── modules/
 │   └── nixos/                             # Shared system-level modules
 │       ├── locale.nix
-│       ├── desktop.nix                    # GDM/GNOME + Niri/MangoWC sessions
+│       ├── desktop.nix                    # GNOME + GDM + printing
+│       ├── wayland.nix                    # Niri/MangoWC session wiring
 │       ├── audio.nix                      # PipeWire
 │       ├── nix-settings.nix               # Flakes, GC, generation limit
 │       └── noctalia-system.nix            # Bluetooth, upower, power-profiles
@@ -72,7 +73,8 @@ nixos-config/
             ├── foot.nix                   # foot terminal (Catppuccin Mocha)
             ├── newsboat.nix               # Newsboat RSS reader
             ├── scripts.nix                # Wires pkgs/ custom scripts
-            ├── wayland.nix                # Niri + MangoWC user config
+            ├── niri.nix                   # Niri config + shared Wayland user services
+            ├── mangowc.nix                # MangoWC config + autostart
             └── noctalia.nix               # Noctalia bar (Home Manager module)
 ```
 

@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/locale.nix
     ../../modules/nixos/desktop.nix
+    ../../modules/nixos/wayland.nix
     ../../modules/nixos/audio.nix
     ../../modules/nixos/nix-settings.nix
     ../../modules/nixos/noctalia-system.nix

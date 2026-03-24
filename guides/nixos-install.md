@@ -377,7 +377,7 @@ The `git.nix` module sets a global email/name.  Edit
 After Home Manager activates, the wallpaper is copied to
 `~/.local/share/wallpapers/wallhaven_eo2p3w.jpg` automatically.
 Niri, MangoWC, and GNOME all reference that same managed path.
-GNOME picks it up via `dconf.settings` in `wayland.nix`.
+GNOME picks it up via `dconf.settings` in `niri.nix`.
 
 ### Session selection at GDM
 
@@ -429,7 +429,7 @@ Common causes:
 
 ### GDM shows only GNOME, mango session missing
 
-The system needs to be rebuilt after enabling the shared desktop session wiring in `modules/nixos/desktop.nix`:
+The system needs to be rebuilt after enabling the shared Wayland session wiring in `modules/nixos/wayland.nix`:
 
 ```bash
 sudo nixos-rebuild switch --flake ~/nixos-config#rms-laptop

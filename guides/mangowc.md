@@ -65,7 +65,6 @@ MangoWC uses **tags** rather than workspaces.  Tags 1–5 are configured.
 | --- | --- |
 | `Print` | Interactive region → saved to `~/Pictures/Screenshots/` |
 | `Super + S` | Full-screen → saved to `~/Pictures/Screenshots/` |
-| `Alt + Print` | Focused window → saved to `~/Pictures/Screenshots/` |
 
 ### Media / hardware keys
 
@@ -96,7 +95,7 @@ MangoWC uses **tags** rather than workspaces.  Tags 1–5 are configured.
 | `~/.config/mango/config.conf` | Main compositor config (effects, layout, keybindings) |
 | `~/.config/mango/autostart.sh` | Session startup script (bar, wallpaper, idle) |
 
-Both are managed by Home Manager (`home/rms/home-modules/wayland.nix`). Edit that Nix file and run `nixswitch` to apply changes — no manual file editing needed.
+MangoWC is managed by Home Manager in `home/rms/home-modules/mangowc.nix`. Edit that file and run `nixswitch` to apply changes.
 
 To **hot-reload** keybindings only, press `Super + Shift + R` inside the mango session.
 
@@ -145,8 +144,9 @@ Identical to the Niri session:
 ## Nix module structure
 
 ```text
-modules/nixos/desktop.nix          # system: GDM/GNOME + Niri/MangoWC session wiring
-home/rms/home-modules/wayland.nix  # user: Niri KDL + Mango config.conf/autostart.sh
+modules/nixos/wayland.nix          # system: Niri/MangoWC session wiring and portals
+home/rms/home-modules/mangowc.nix  # user: MangoWC config.conf + autostart.sh
+home/rms/home-modules/niri.nix     # user: shared Wayland tools/services + Niri config
 ```
 
-The system module registers both Wayland sessions and the required XDG portal routing. The Home Manager module owns the shared session tools plus the Niri and MangoWC config files.
+The system module registers both Wayland sessions and the required XDG portal routing. MangoWC keeps its own home module again, while Niri and the shared user-side Wayland services live in `niri.nix`.
